@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同">
+  <meta name="description" content="房屋租赁合同">
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+  <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+  <h2>单图片上传自增</h2>
+  <h3>扩展信息示例</h3>
+  <h4>效果</h4>
+  <div class="file-upload-group">
+    <form name="add1" target-type="addImgUploader" imgUpload-style='{"imgType": "add","limit":4}'>
+      <div class="file-upload">
+        <div class="file-progress">
+          <div class="progress">
+            <div class="progress-bar">上传中...</div>
+          </div>
+        </div>
+        <label class="file-select">
+          <img alt="" name="" />
+          <input type="file" name="file" file-type="add" />
+          <i class="file-delete"></i>
+        </label>
+      </div>
+    </form>
+  </div>
+  <h4>开发代码</h4>
+  <xmp>
+    <div class="file-upload-group">
+      <form name="addImgUploader1" target-type="addImgUploader" imgUpload-style='{"imgType": "add","limit":4}'>
+        <div class="file-upload">
+          <div class="file-progress">
+            <div class="progress">
+              <div class="progress-bar">上传中...</div>
+            </div>
+          </div>
+          <label class="file-select">
+            <img alt="" name="" />
+            <input type="file" name="file" file-type="add" />
+            <i class="file-delete"></i>
+          </label>
+        </div>
+      </form>
+    </div>
+  </xmp>
+  <h4>开发说明</h4>
+  <div>使用div class="file-upload-group"包裹整个组件内容。</div>
+  <div>使用form标签，name属性值添加不包含在合同基本信息中的随意字段，添加target-type="addImgUploader"属性标识当前为单图片上传自增组件。</div>
+  <div>添加imgUpload-style='{"imgType": "add" ,"limit":4}'属性控制组件图片张数的最大限制。</div>
+  <div>form内的如下代码为必须代码，分别为图片显示（img标签）、单图片上传的图片选择（input标签）、图片删除（i标签）和样式控制：</div>
+  <xmp>
+    <div class="file-upload">
+      （“上传中”样式代码的添加位置）
+      <label class="file-select">
+        <img alt="" name="" />
+        <input type="file" name="file" file-type="add" />
+        <i class="file-delete"></i>
+      </label>
+    </div>
+  </xmp>
+  <div>控制“上传中”的样式有两种：</div>
+  <div>1、默认样式：转圈等待的gif，可以不添加这部分代码</div>
+  <xmp>
+    <div class="loading"></div>
+  </xmp>
+  <div>2、进度条：</div>
+  <xmp>
+    <div class="file-progress">
+      <div class="progress">
+        <div class="progress-bar">上传中...</div>
+      </div>
+    </div>
+  </xmp>
+
+  <!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+  var data = {
+    code: 'HY123456789',//租赁合同编号
+  }
+  data.btnCtrl = '03';
+  contractInit(data);
+  addUploadInit({
+    // url: path + '/contractController/uploadAttachmentPic',
+    url: '/a/file/upload',// 本地测试使用
+  }, {
+      success: function (data, option) {
+        console.log(this);
+        // if(data.state){
+        if (data.state === '01') {// 本地测试使用
+          var $e = $(option.workDom);
+          // var src = data.result[0].filePath;
+          var src = '../testImg/' + data.data[0].fileName;// 本地测试使用
+          var $thisForm = $e.closest('form');
+          var name = $thisForm.attr('name');
+
+          var targetType = getTargetType(name);
+          createInstance(name, targetType);
+          var imgUrlArr = instanceMap[name].imgUrlArr ? instanceMap[name].imgUrlArr : [];
+          imgUrlArr.push(src);
+
+          instanceMap[name].setImgUrlArr(imgUrlArr);
+        } else {
+          //alert(data.msg);
+          alert(data.message);// 本地测试使用
+        }
+      },
+      editSuccess: function (data, option) {
+        console.log(this);
+        // if(data.state){
+        if (data.state === '01') {// 本地测试使用
+          var $e = $(option.workDom);
+          // var src = data.result[0].filePath;
+          var src = '../testImg/' + data.data[0].fileName;// 本地测试使用
+          var $thisForm = $e.closest('form')
+          var name = $thisForm.attr('name');
+          var index = $('[name=' + name + ']').index($thisForm);
+
+          var targetType = getTargetType(name);
+          createInstance(name, targetType);
+          var imgUrlArr = instanceMap[name].imgUrlArr ? instanceMap[name].imgUrlArr : [];
+          imgUrlArr[index] = src;
+
+          instanceMap[name].setImgUrlArr(imgUrlArr);
+        } else {
+          //alert(data.msg);
+          alert(data.message);// 本地测试使用
+        }
+      },
+      delete: function (option) {
+        var $e = $(option.workDom);
+        var $thisForm = $e.closest('form');
+        var name = $thisForm.attr('name');
+        var index = $('[name=' + name + ']').index($thisForm);
+
+        var targetType = getTargetType(name);
+        createInstance(name, targetType);
+        var imgUrlArr = instanceMap[name].imgUrlArr ? instanceMap[name].imgUrlArr : [];
+        imgUrlArr.splice(index, 1);
+
+        instanceMap[name].setImgUrlArr(imgUrlArr);
+      },
+    });
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>房屋租赁合同</title>
+    <meta name="keywords" content="房屋租赁合同">
+    <meta name="description" content="房屋租赁合同">
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+    <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+<h2>基础信息文本</h2>
+<h3>合同基本信息示例</h3>
+<h4>效果</h4>
+<div>基础文本：<span name="cityName" target-type="basicText"></span>合同模板</div>
+<h4>开发代码</h4>
+<xmp>
+    <div><span name="cityName" target-type="basicText"></span>合同模板</div>
+</xmp>
+<h4>开发说明</h4>
+<div>使用span标签，name属性值添加合同基本信息中的对应字段，添加target-type="basicText"</div>
+<br>
+<br>
+
+<!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+    var data = {
+        cityName: '武汉市'//基础文本信息
+    }
+    data.btnCtrl = '03';
+    contractInit(data);
+</script>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同">
+  <meta name="description" content="房屋租赁合同">
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+  <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+    <h2>金额输入框</h2>
+  <h3>合同基本信息示例</h3>
+  <h4>效果</h4>
+  <h5>应用1：</h5>
+  <div>租金标准：人民币<input name="money" target-type="moneyInput" />元/月</div>
+  <h5>应用2：</h5>
+  <div>租金标准：人民币<input name="money" target-type="moneyInput" />元/月(大写<input name="money" data-replace="chineseMoney" />)</div>
+  <h4>开发代码</h4>
+  <xmp>
+    应用1：
+<div>租金标准：人民币<input name="money" target-type="moneyInput" />元/月</div>
+    应用2：
+<div>租金标准：人民币<input name="money" target-type="moneyInput" />元/月(大写<input name="money" data-replace="chineseMoney" />)</div>
+  </xmp>
+  <h4>开发说明</h4>
+  <h5>应用1：</h5>
+  <div>使用input标签，name属性值添加合同基本信息中的对应字段，添加target-type="moneyInput"属性</div>
+  <h5>应用2：</h5>
+  <div>需要大写金额时，添加一个input标签，使用同一个name字段，添加data-replace="chineseMoney"属性</div>
+  <br>
+  <br>
+  <h3>扩展信息示例</h3>
+  <h4>效果</h4>
+  <div>租金总计：人民币<input name="moneyInput1" target-type="moneyInput" />元/月(大写<input name="moneyInput1" data-replace="chineseMoney" />)</div>
+  <h4>开发代码</h4>
+  <xmp>
+<div>租金总计：人民币<input name="moneyInput1" target-type="moneyInput" />元/月(大写<input name="moneyInput1" data-replace="chineseMoney" />)</div>
+  </xmp>
+  <h4>开发说明</h4>
+  <div>使用input标签，name属性值添加不包含再合同基本信息中的随意字段，添加target-type="moneyInput"属性</div>
+  <div>大写金额的显示，添加一个input标签，使用同一个name字段，添加data-replace="chineseMoney"属性</div>
+  <!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+var data = {
+    money: '50',//租赁合同编号
+}
+data.btnCtrl = '03';
+contractInit(data);
+</script>
+
+</html>

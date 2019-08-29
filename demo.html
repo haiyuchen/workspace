@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同" />
+  <meta name="description" content="房屋租赁合同" />
+  <style>
+    /*全局设定部分样式*/
+      html{font-size: 625%;}
+      body{margin: 0;font-size:0.16rem;font-size:16px;}
+      *{box-sizing:border-box;-moz-box-sizing:border-box;/* Firefox */-webkit-box-sizing:border-box; /* Safari */}
+      input,input-parent{max-width:95% !important;background: #efefef;outline: none;font-size:16px;border:none;border-bottom: 1px solid #333;}
+      input-parent{display: inline-block;background: #fff;font-weight: initial;text-align: left;line-height: normal;}
+      input:read-only{background: #fff;}
+      [data-radio],[data-checkbox]{ display: inline-block; font-size: 20px; width: 16px; text-align: center; cursor: pointer; }
+      p,table{ max-width: 660px;}
+      p{text-align: justify;line-height: 35px;}
+      a{color:black;}
+      a[name]{text-decoration: none;}
+      /* input{outline: none;font-size:16px;border:none;border-bottom: 1px solid #333;} */
+      table{border-collapse: collapse;border-spacing: 0;width:660px;}
+      table input,table input-parent{border:none;width:100%;text-align: center;}
+      th{font-weight: 600;}
+      tr,th,td,td>p{height: 30px;text-align: center;}
+      table .table-width-set,.tr-first { height: 0; overflow: hidden; border-bottom: none;}
+      table .table-width-set td,.tr-first td { height: 0; }
+
+      .container{width: 800px;margin:0 auto;border:1px solid #efefef;padding: 0 20px 10px 20px;box-sizing:content-box;}
+      .no-page,.split,.page{width: 800px;margin: 10px auto;background: #fff;padding: 80px 70px;line-height: 26px;box-shadow: 0 0 8px #ccc;}
+      .split,.page{height: 1123px;}
+      .split{page-break-after:always;}
+
+      
+      .box-center {
+        display: flex;
+        align-items: center;
+      }
+      .signature-lessor{right: 50%;top:0;}
+      .signature-lessee{right: 0;top:0;}
+      [data-radio],[data-checkbox]{ text-indent: 0; text-align: right; }
+      /*生成pdf使用，样式仍以fileUpload.css为准*/
+      /* 签名相关样式 */
+      .signature-show{ width: 200px; height: 150px; border: 1px #d7d7d7 solid; margin-bottom: 10px; }
+      .signature-show img{ width: 100%; height: 100%; }
+      .signature-box{ position: fixed; left: 0; top: 0; background: rgba(0, 0, 0, 0.3); width: 100%; height: 100%; z-index: -1; display: none; }
+      .signature-box>div{ width: 660px; height: 434px; margin: 30px auto; position: relative; border-radius: 6px; background: rgba(255, 255, 255); overflow: hidden; }
+      #signature{ border: 1px #d7d7d7 solid; width: 100%; height: calc(100% - 34px); }
+      .signature-button{ width: 100%; height: 34px; }
+      .signature-button button{ width: calc(100%/3); height: 100%; }
+      /* 图片上传相关样式 */
+      form[target-type="singleImgUploader"], form[target-type="addImgUploader"]{ text-align: center; }
+      [fileUpload-style]{ margin: 15px auto; }
+      .file-upload { position: relative; margin: 0 auto; display: block; }
+      .file-delete { position: absolute;
+      bottom: 0; right: 0; background-size: 60%; width: 40px; height: 40px; border: 1px #dfdfdf solid; display: none; cursor: pointer;
+      }
+      .file-progress { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.3); z-index: 10; display: none; }
+      .file-progress .progress { position: absolute; width: 60%; margin: 0 auto; bottom: 10px; left: 20%; }
+      .file-progress .progress .progress-bar {
+      width: 0%; padding-top: 0; -webkit-transition: width .1s ease;
+      -o-transition: width .1s ease; transition: width .1s ease;
+      }
+      .file-select { width: 100%; height: 100%; }
+      .file-select img { margin: 0 auto; text-align: center; width: 100%; height: 100%; }
+      .batch-file-upload { border: 1px solid #d7d7d7; margin: 0 auto; padding: 5px; overflow: hidden; position: relative; }
+      .batch-file-show-img, .batch-file-select { float: left; border: 1px solid #d7d7d7; margin: 5px; position: relative; }
+      .batch-file-show-img img { width: 100%; height: 100%; }
+      .batch-file-close {
+      position: absolute; width: 18px; height: 18px; line-height: 15px; border: 1px solid #d7d7d7; border-radius: 9px;
+      top: -7px; left: -7px; background: #fff; cursor: pointer;
+      }
+      .loading {
+      position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+      z-index: 100; display: none;
+      }
+      .file-upload input[type="file"], .batch-file-upload input[type="file"] { display: none; }
+      /* 图片控件样式，来源bootstrap v3.3.7 */
+      .progress {
+      height: 20px; margin-bottom: 20px; overflow: hidden; background-color: #f5f5f5; border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+      }
+      .progress-bar {
+      float: left; width: 0; height: 100%; font-size: 12px; line-height: 20px; color: #fff; text-align: center;
+      background-color: #337ab7; -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15); box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+      -webkit-transition: width .6s ease; -o-transition: width .6s ease; transition: width .6s ease;
+      }
+      .progress-striped .progress-bar, .progress-bar-striped {
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      -webkit-background-size: 40px 40px; background-size: 40px 40px;
+      }
+      .progress.active .progress-bar, .progress-bar.active {
+      -webkit-animation: progress-bar-stripes 2s linear infinite;
+      -o-animation: progress-bar-stripes 2s linear infinite;
+      animation: progress-bar-stripes 2s linear infinite;
+      }
+      .progress-bar-success { background-color: #5cb85c; }
+      .progress-striped .progress-bar-success {
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      }
+      .progress-bar-info { background-color: #5bc0de; }
+      .progress-striped .progress-bar-info {
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      }
+      .progress-bar-warning { background-color: #f0ad4e; }
+      .progress-striped .progress-bar-warning {
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      }
+      .progress-bar-danger { background-color: #d9534f; }
+      .progress-striped .progress-bar-danger {
+      background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+      }
+      /*图片初始化样式*/
+      .batch-file-upload{ width: 600px; height: 400px;}
+      .batch-file-show-img,.batch-file-select{ width: calc(100% / 3 - 10px); height: calc(100% / 3 - 10px); }
+      .file-upload{ width: 400px; height: 250px;}
+
+      /*视情况修改部分样式*/
+      .head p{text-align: center;font-size: 26px;font-weight: 600;}        
+      /* .container{width: 800px;margin:0 auto;border:1px solid #efefef;padding: 0 20px 10px 20px;} */
+      .cont{width: 100%;margin-top: 10px;}
+      .cont p{font-size: 16px;line-height: 35px;}
+      /* .cont span{font-weight: bold} */
+      .code{text-align:right;font-size:20px;margin-top:10px;font-weight: bold} 
+      
+      .jigou{color:red;}
+      .fujian{font-size: 24px;font-weight: 600}      
+      .space{text-indent: 30px;}     
+      .fo{font-size:16px;}
+      /* .fo span{display: block;width: 50%;float: left;line-height: 40px;} */
+      .fo span{display: inline-block;width: 50%;line-height: 40px;}
+      .fo p{line-height:40px;}
+      .renter-list{margin-top:25px;margin-bottom:25px;}
+      .leaser-list{margin-top:25px;}
+      .bottom{margin-top:25px;}
+      .bottom p{line-height:60px; font-size:16px;}	
+      .desc{font-size:17px;font-family:KaiTi;line-height: 30px}
+      .cover p{text-align: center;font-size: 40px;font-weight: 800}
+      .sd{text-align:left;font-size:20px;margin-top:10px;font-weight: bold}
+      .border{width:100%;height:1000px;border-width:1px;border-style:solid;}
+      .paste{margin-top:500px;margin-left:350px;font-size:50px} 
+      .table1 input[type=radio]{border-bottom: 0px solid #333;}
+      .head {text-align: center;font-size: 26px;font-weight: 800}
+      .head1{text-align: center;font-size: 24px;font-weight: bold}
+      .head2{text-align: center;font-size: 22px;font-weight: bold}
+      .head3{text-align: center;font-size: 22px}
+      .head4{font-family:SimHei}		
+      .img{width:480px!important;height:360px!important}	
+      .pics{margin-left:100px!important}
+      /**签名信息的table***/
+      .signature-show{ background: none;margin-bottom: 0;}
+      .signature-section tr td{text-align: left;}
+      .signature-section tr td span{width: 100%;}
+      .signature-section tr td .signature-show{width: 120px; height: 80px;}
+
+      /*自定义部分样式*/
+      .input-w560{width: 560px;}
+      .input-w570{width: 570px;}
+      .input-w30{width: 30px;text-align: center;}
+      .input-w50{width: 50px;text-align: center;}
+      .input-w250{width: 250px;}
+      .input-w370{width: 370px;}
+      .input-w100{width: 100px;}
+      .input-w170{width: 170px;}
+      .input-w280{width: 280px;}
+      .input-w85{width: 85px;}
+      .input-w120{width: 120px;}
+      .input-w75{width: 75px;}
+      .input-w90{width: 90px;}
+      .input-w25{width: 25px;}
+      .input-w420{width: 420px;}
+
+      .input-w220{text-align:left;width:220px;}
+
+      .input-w270{width:270px;}
+      .input-w290{width:290px;}
+      .input-w280{width:280px;}
+      .input-w300{width:300px;}
+      .input-w340{width:340px;}
+      .input-w400{width:400px;}
+      .input-w660{width:660px;}
+      .input-w620{width:615px;}
+      .input-w625{width:625px;}
+      .input-w650{width:650px;}
+      .input-w760{width:760px;}
+      .input-w780{width:780px;}
+      .input-w485{width:485px;}
+      .input-w500{width:500px;}
+      .input-w700{width:700px;}
+      .input-w710{width:710px;}
+      .input-w730{width:730px;}
+      .input-w120{width:120px;}
+      .input-w150{width:150px;}
+      .input-w180{width:180px;}
+      .input-w200{width:200px;}
+      .input-w250{width:250px;}
+      .input-w230{width:230px;}
+      .input-w320{width:310px;}
+      .input-w80{text-align: center;width:80px;}
+      .input-w60{text-align: center;width:60px;}
+      .input-w50{text-align: center;width:50px;}
+      .input-w70{text-align: center;width:70px;}
+      .input-w40{text-align: center;width:40px;}
+      .input-n-w295{text-align: center;width:295px;border:0;}
+      .input-n-w200{text-align: center;width:200px;border:0;}
+      .input-n-w150{text-align: center;width:150px;border:0;}
+      .input-n-w120{text-align: center;width:120px;border:0;}
+      .input-n-w300{text-align: center;width:300px;border:0;}
+      .input-n-w220{text-align: center;width:220px;border:0;}
+      .input-n-w400{text-align: center;width:400px;border:0;}
+      .input-n-w30{text-align: center;width:30px;border:0;}
+      .input-n-w40{text-align: center;width:40px;border:0;}
+      .input-n-w80{text-align: center;width:80px;border:0;}
+      .input-none{border:0;outline: none;}
+      .input-none-c{border:0;outline: none;text-align: center;}
+      .input-n-w50{text-align: center;width: 50px;border:0;}
+      .input-w-70{width: 70px;border:0;}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="no-page">
+      <table>
+        <tr>
+          <td class="sd">SDF—2018—0001</td>
+          <td class="code">合同编号：<input name="code" class="input-w250 " />号</td>
+        </tr>
+      </table>
+      <br /><br /><br /><br /><br />
+      <div class="cover">
+        <p>山东省住房租赁合同</p>
+        <p>示 范 文 本</p>
+      </div>
+      <br /><br /><br /><br /><br /><br /><br />
+      <div>
+        <p class="head1">出租人：<input name="entJname" class="input-w270 entName1" /></p>
+        <br />
+        <p class="head1">承租人：<input name="entYname" class="input-w270 entName2" /></p>
+      </div>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <div>
+        <p class="head2">山东省住房和城乡建设厅</p>
+        <p class="head2">山东省工商行政管理局</p>
+        <p class="head1">二〇一八 年 五 月</p>
+      </div>
+      <br /><br /><br /><br />
+      <div>
+        <p class="head1">说明</p>
+        <div class="desc">
+          &nbsp;&nbsp;&nbsp;&nbsp;1．本合同文本为示范文本，由山东省住房和城乡建设厅、山东省工商行政管理局共同制定，供本省行政区域内的住房租赁合同当事人参照使用。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;2．签订本合同前，双方当事人应当出示有效身份证明。出租人还应当向承租人出示房屋所有权证明或其他房屋合法来源证明；房屋为共有的，应提供共有人同意出租的证明；转租房屋的，应提供原出租人同意转租的证明；接受委托出租房屋的，应当提供出租人的授权委托书。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;3．签订本合同前，双方当事人应当仔细阅读合同条款，特别是合同中具有选择性、补充性、修改性的内容。本合同【】表示选择内容，空格部位填写的其他需要添加的内容，双方当事人应协商确定。【】中选择内容，以划√方式选定；对于实际未发生或不作约定的，应当在空格部位打×，以示删除。双方当事人可以针对本合同文本中没有约定或者约定不明确的内容，在相关条款后的空白行中进行补充约定。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;4．签订本合同前，双方当事人任何一方要求对方提供本人（企业）信用记录信息的，对方应积极配合予以提供。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;5．双方当事人应保证本合同中填写的通讯地址、电子邮箱、联系电话等信息真实、准确、有效。上述信息发生变化的一方应于变化后3日内通知对方。因上述信息有误或变化后未通知对方，导致未能有效接收有关通知文件的，相应后果由失误方自行承担。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;6．双方当事人可以根据实际情况决定本合同原件的份数，并在签订合同时认真核对，确保各份合同内容一致；在任何情况下，双方当事人均应至少持有一份合同原件。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;7．本合同文本有以下附件：房屋交付确认书、房屋权属证明资料及房屋平面图、房屋及主要设施设备安全使用说明书、房屋交还确认书。通过房地产经纪机构成交的，房屋租赁经纪服务合同应作为本合同的附件。
+          <br />
+        </div>
+      </div>
+      <br /><br /><br /><br />
+      <p class="head">山东省住房租赁合同</p>
+      <div class="cont">
+        <div class="renter-list">
+          <p>出租人：<input name="entJname" class="input-w570" /></p>
+          <p><span name="name151" data-radio="01" target-type="radio" fill-style="diamond">□</span>【法定代表人】<span name="name151"
+              data-radio="02" target-type="radio" fill-style="diamond">□</span>【负责人】：<input name="name152" class="input-w150 " />出生日期：<input
+              name="name153" target-type="dateInput" data-replace="yyyy" class="input-w80" />年<input name="name153"
+              data-replace="mm" class="input-w50" />月<input name="name153" data-replace="dd" class="input-w50" />日,性别：<input
+              name="name154" class="input-w50" />国籍：<input name="name53" class="input-w150" /><span name="name54"
+              data-radio="1" target-type="radio" fill-style="diamond">□</span>【户籍所在地】<span name="name54" data-radio="2">□</span>【居住地】:<input
+              name="name155" class="input-w400 " /></p>
+          <p>证件类型：<span name="entJcardType" data-radio="01" target-type="specialReadOnlyRadio" fill-style="diamond">□</span>【居民身份证】<span
+              name="entJcardType" data-radio="08">□</span>【社会统一信用代码】<span name="entJcardType" data-radio="other">□</span>【<input
+              name="entJcardType" data-replace="cardType" class="input-w120 cardType" />】</p>
+          <p>证号：<input name="entJcardNumber" class="input-w300" /></p>
+          <p>通讯地址：<input name="entJaddress" class="input-w250" />邮政编码：<input name="name156" class="input-w250" /></p>
+          <p>联系电话：<input name="entJphone" class="input-w250" />电子邮箱：<input name="entJemail" class="input-w250" /></p>
+          <p>收款账户（银行账户或网络支付账户）：<input name="jfskzh" class="input-w370" /></p>
+          <p><span name="name56" data-radio="01" target-type="radio" fill-style="diamond">□</span>【委托】<span name="name56"
+              data-radio="02">□</span>【法定】代理人：<input name="name57" class="input-w150" />出生日期：<input name="name51"
+              target-type="dateInput" data-replace="yyyy" class="input-w80" />年<input name="name51" data-replace="mm"
+              class="input-w50" />月<input name="name51" data-replace="dd" class="input-w60" />日,性别：<input name="name146"
+              class="input-w60" />国籍：<input name="name58" class="input-w150" /><span name="name59" data-radio="1"
+              target-type="radio" fill-style="diamond">□</span>【户籍所在地】<span name="name59" data-radio="2">□</span>【居住地】:<input
+              name="name60" class="input-w400" /></p>
+          <p>证件类型：<span name="name61" data-radio="01" target-type="radio" fill-style="diamond">□</span>【居民身份证】<span
+              name="name61" data-radio="02">□</span>【社会统一信用代码】<span name="name61" data-radio="other">□</span>【<input
+              name="name61" radio-input="otherValue" class="input-w120" />】</p>
+          <p>证号：<input name="name63" class="input-w300" /></p>
+          <p>通讯地址：<input name="name64" class="input-w250" />邮政编码：<input name="name65" class="input-w250" /></p>
+          <p>联系电话：<input name="name66" class="input-w250" />电子邮箱：<input name="name67" class="input-w250" /></p>
+          <p class="space">（出租人为多人时，可相应增加）</p>
+        </div>
+        <div class="leaser-list">
+          <p>承租人：<input name="entYname" class="input-w570" /></p>
+          <p><span name="name157" data-radio="01" target-type="radio" fill-style="diamond">□</span>【法定代表人】<span name="name157"
+              data-radio="02" target-type="radio" fill-style="diamond">□</span>【负责人】：<input name="name158" class="input-w150 " />出生日期：<input
+              name="name159" target-type="dateInput" data-replace="yyyy" class="input-w80" />年<input name="name159"
+              data-replace="mm" class="input-w50" />月<input name="name159" data-replace="dd" class="input-w50" />日,性别：<input
+              name="name160" class="input-w50" />国籍：<input name="name68" class="input-w150" /><span name="name69"
+              data-radio="1" target-type="radio" fill-style="diamond">□</span>【户籍所在地】<span name="name69" data-radio="2">□</span>【居住地】:<input
+              name="name161" class="input-w400 " /></p>
+          <p>证件类型：<span name="entYcardType" data-radio="01" target-type="specialReadOnlyRadio" fill-style="diamond">□</span>【居民身份证】<span
+              name="entYcardType" data-radio="08">□</span>【社会统一信用代码】<span name="entYcardType" data-radio="other">□</span>【<input
+              name="entYcardType" data-replace="cardType" class="input-w120 cardType" />】</p>
+          <p>证号：<input name="entYcardNumber" class="input-w300" /></p>
+          <p>通讯地址：<input name="entYaddress" class="input-w250" />邮政编码：<input name="name162" class="input-w250" /></p>
+          <p>联系电话：<input name="entYphone" class="input-w250" />电子邮箱：<input name="entYemail" class="input-w250" /></p>
+          <p>付款账户（银行账户或网络支付账户）：<input name="yffkzh" class="input-w370" /></p>
+          <p><span name="name71" data-radio="01" target-type="radio" fill-style="diamond">□</span>【委托】<span name="name71"
+              data-radio="02">□</span>【法定】代理人：<input name="name72" class="input-w150" />出生日期：<input name="name52"
+              target-type="dateInput" data-replace="yyyy" class="input-w80" />年<input name="name52" data-replace="mm"
+              class="input-w50" />月<input name="name52" data-replace="dd" class="input-w60" />日,性别：<input name="name147"
+              class="input-w60" />国籍：<input name="name73" class="input-w150" /><span name="name74" data-radio="1"
+              target-type="radio" fill-style="diamond">□</span>【户籍所在地】<span name="name74" data-radio="2">□</span>【居住地】:<input
+              name="name75" class="input-w400" /></p>
+          <p>证件类型：<span name="name76" data-radio="01" target-type="radio" fill-style="diamond">□</span>【居民身份证】<span
+              name="name76" data-radio="02">□</span>【社会统一信用代码】<span name="name76" data-radio="other">□</span>【<input
+              name="name76" radio-input="otherValue" class="input-w120" />】</p>
+          <p>证号：<input name="name78" class="input-w300" /></p>
+          <p>通讯地址：<input name="name79" class="input-w250" />邮政编码：<input name="name80" class="input-w250" /></p>
+          <p>联系电话：<input name="name81" class="input-w250" />电子邮箱：<input name="name82" class="input-w250" /></p>
+          <p class="space">（承租人为多人时，可相应增加）</p>
+        </div>
+        <p class="space">依据《中华人民共和国合同法》《中华人民共和国城市房地产管理法》等有关法律、法规、规章以及房屋所在地的有关规定，出租人和承租人本着自愿、平等、公平、诚实信用的原则，经协商一致，就住房租赁有关事宜签订本合同。</p>
+        <p class="space"><strong>第一条 房屋基本情况 </strong></p>
+        <p class="space">1．房屋坐落：<input name="fwzl" class="input-w485 address" />（应与房屋所有权证明或其他房屋合法来源证明记载一致；房屋分租的，应注明分租房间的编号），属
+          <input name="name163" class="input-w120 jdmc" />街道办事处（乡镇）<input name="name83" class="input-w150 " />居民委员会（村委会）辖区。</p>
+        <p class="space">2．自然状况：所在建筑物地上总层数为<input name="name84" class="input-w80 totalFloors" />层，本房屋在第<input name="name168"
+            class="input-w80 floor" />层；<a class="addGou" data-radio="01" target-type="radio" fill-style="diamond" name="name25"
+            onclick="addGou(this,'name25')">□</a>【建筑】<a class="addGou" data-radio="02" name="name25" onclick="addGou(this,'name25')">□</a>【使用】面积：<input
+            name="name85" class="input-w80 buildingArea" />平方米（房屋分租的，填写分租房间的使用面积）；结构：<input name="fwjg" target-type="radio"
+            data-replace="houseStructure" class="input-w150 structure" />；户型：<input name="name164" class="input-w50 wssl" />室<input
+            name="name165" class="input-w50 tsl" />厅<input name="name166" class="input-w50 wsjsl" />卫<input name="name167"
+            class="input-w50 cfsl" />厨，若为非成套住房或分租的住房，共享的非居住空间包括：<input name="name90" class="input-w270" />。配套设施设备及附属物品、装修等状况见附件1。</p>
+        <p class="space">3．权属状况：<span id="cqzlxType"><span name="cqzlx" data-radio="01,02" target-type="specialReadOnlyRadio"
+              fill-style="diamond">□</span>【不动产权证书（房屋所有权证）】<span name="cqzlx" data-radio="03">□</span>【买卖合同】<span name="cqzlx"
+              data-radio="other">□</span>【<input name="name148" class="input-w150 " />】</span>的编号：<input name="cqzbh"
+            class="input-w270 cno" />。房屋<a class="addGou" name="name15" data-radio="01" target-type="radio" fill-style="diamond"
+            onclick="addGou(this,'name15')">□</a>【所有权人】<a class="addGou" name="name15" data-radio="02" onclick="addGou(this,'name15')">□</a>【购房人】<a
+            class="addGou" name="name15" data-radio="other" onclick="addGou(this,'name15')">□</a>【<input name="name15" radio-input="otherValue"
+            class="input-w80 cqrlx" />】
+          的名称：<input name="cqrxm" class="input-w80 cqrxm" />。房屋权属证明资料及房屋平面图见附件2。</p>
+        <p class="space">本房屋<a class="addGou" name="dyzt" data-radio="1" target-type="radio" fill-style="diamond"
+            onclick="addGou(this,'house_dyzt')">□</a>【已】<a class="addGou" name="dyzt" data-radio="0" onclick="addGou(this,'house_dyzt')">□</a>【未】设定抵押，且<a
+            class="addGou" name="name18" data-radio="01" target-type="radio" fill-style="diamond" onclick="addGou(this,'name18')">□</a>【无共有人】<a
+            class="addGou" data-radio="02" name="name18" onclick="addGou(this,'name18')">□</a>【共有人同意出租】。</p>
+        <p class="space"><strong>第二条 房屋租赁交易形式 </strong></p>
+        <p class="space">1．租赁用途：本房屋出租仅作为居住用途使用。阳台、储藏室等非居住空间不得出租用于居住。</p>
+        <p class="space">2．租赁形式：<span id="zllx"><span name="zllx" data-radio="01" target-type="radio" fill-style="diamond">□</span>【整租】<span
+            name="zllx" data-radio="02">□</span>【分租】</span>。如分租，分租房间的具体位置应在房屋平面图（见附件2）中标注；客厅、厨房、卫生间等公用部位的使用情况见附件1。</p>
+        <p class="space">3．出租方式：<a class="addGou" name="name16" data-radio="01" target-type="radio" fill-style="diamond"
+            onclick="addGou(this,'name16')">□</a>【所有权人出租】<a class="addGou" name="name16" data-radio="02" onclick="addGou(this,'name16')">□</a>【购房人出租】<a
+            class="addGou" name="name16" data-radio="other" onclick="addGou(this,'name16')">□</a>【<input name="name16"
+            radio-input="otherValue" class="input-w150 " />】。如属于转租，出租人应取得原出租人书面同意。</p>
+        <p class="space">4．租住人数：本房屋居住人数为<input name="cgzrs" class="input-w50 cgzrs" />人，最多不超过<input name="yxzdzzrs"
+            class="input-w50 maxRentPerson" />人（分租的，填写分租房间的居住人数）。承租人应当向出租人提供实际居住人的信息，并及时将变动情况告知出租人。单间居住人数和人均租住面积应当符合当地人民政府的规定。</p>
+        <p class="space">5．租赁渠道：本次房屋租赁通过下列第<input name="name86" class="input-w50" />种方式成交。</p>
+        <p class="space">（1）双方当事人自行成交。</p>
+        <p class="space">（2）双方当事人委托房地产经纪机构成交，机构名称：<input name="name87" class="input-w200 orgname" />，机构备案号：<input name="name89"
+            class="input-w150" />，执业经纪人及实名登记号：<input name="name92" class="input-w200 agentname" />，房屋出租经纪服务合同编号：<input
+            name="name88" class="input-w200" />，房屋承租经纪服务合同编号：<input name="name91" class="input-w200" />
+          。</p>
+        <p class="space">（3）住房租赁企业提供租赁服务，企业名称：<input name="name94" class="input-w280" />。</p>
+        <p class="space">（4）<input name="name95" class="input-w570" />。</p>
+        <p class="space">6．备案登记：本合同订立后3日内，双方当事人应通过山东省住房租赁综合服务平台，或到房屋所在地房屋交易管理部门设立的服务窗口，申请办理房屋租赁合同登记备案手续。登记备案信息发生变更或合同解除的，应及时办理备案变更或注销。</p>
+        <p class="space">承租人属于流动人口范围的，应当依法到房屋所在地公安派出所申报居住登记，出租人应当督促、协助承租人申报居住登记。</p>
+        <p class="space"><strong>第三条 租赁期限和房屋交接 </strong></p>
+        <p class="space">1．本次房屋租赁期自<input name="beginDate" target-type="dateInput" data-replace="yyyy" class="input-w80 beginyear" />年<input
+            name="beginDate" data-replace="mm" class="input-w50 beginmonth" />月<input name="beginDate" data-replace="dd"
+            class="input-w50 beginday" />日至<input name="endDate" target-type="dateInput" data-replace="yyyy" class="input-w80 endyear" />年<input
+            name="endDate" data-replace="mm" class="input-w50 endmonth" />月<input name="endDate" data-replace="dd"
+            class="input-w50 endday" />日。出租人应于<input name="jfrq" target-type="dateInput" data-replace="yyyy" class="input-w80 deliveryyear" />年<input
+            name="jfrq" data-replace="mm" class="input-w50 deliverymonth" />月<input name="jfrq" data-replace="dd" class="input-w50 deliveryday" />日前，将房屋按约定条件交付承租人。双方当事人签署《房屋交付确认书》（见附件1），并移交房门钥匙后，房屋交付完成。</p>
+        <p class="space">2．租赁期满，承租人继续承租本房屋或出租人不再出租本房屋的，应提前<input name="name96" class="input-w50 " />日通知对方。承租人不再承租本房屋或出租人不再出租本房屋的，应为对方重新招租或腾退房屋提供方便。本房屋继续出租的，承租人在同等条件下可优先承租本房屋，本合同另有约定的，从其约定。</p>
+        <p class="space">3．租赁期满或合同解除后，出租人有权收回房屋。承租人应按照正常使用后的状态交还房屋及其附属物品、设施设备。双方当事人签署《房屋交还确认书》（见附件4），并移交房门钥匙后，房屋交还完成。</p>
+        <p class="space"><strong>第四条 租金和押金 </strong></p>
+        <p class="space">1．租金标准：人民币<input name="money" target-type="moneyInput" class="input-w80 rentmoney" />元/月，租金总计：人民币小写<input name="name169"
+            target-type="moneyInput" class="input-w80 rentmoney" />元(大写<input name="name169" data-replace="chineseMoney"
+            class="input-w150 bigrentmoney" />)。承租人按<span id="zjjszqType"><span name="zjjszq" data-radio="01"
+              target-type="radio" fill-style="diamond">□</span>【月】<span name="zjjszq" data-radio="other">□</span>【<input
+              name="name150" class="input-w80 " />】</span>，
+          以<a class="addGou" name="payType" data-radio="02" target-type="radio" fill-style="diamond" onclick="addGou(this,'payType')">□</a>【现金】<a
+            class="addGou" name="payType" data-radio="01" onclick="addGou(this,'payType')">□</a>【银行转账】<a class="addGou"
+            name="payType" data-radio="other" onclick="addGou(this,'payType')">□</a>【<input name="name99" class="input-w80" />】方式支付租金。租金（双方当事人可根据需要一并约定租房定金）支付的具体约定如下：<input
+            name="name97" class="input-w340" />。</p>
+        <p class="space">本合同中未约定租金调整次数和幅度的，出租人不得在租赁期内单方面提高租金。</p>
+        <p class="space">2．多人承租本房屋时，各承租人姓名及月租金分摊金额如下:<input name="name98" class="input-w300" />。房屋租赁期内，承租人提取公积金支付房租的，出租人应据实予以协助配合。</p>
+        <p class="space">3．押金：人民币小写<input name="deposit" target-type="moneyInput" class="input-w80 deposit" />元（大写<input
+            name="deposit" data-replace="chineseMoney" class="input-w150 bigdeposit" />）。承租人以<a class="addGou" name="name20"
+            data-radio="02" target-type="radio" fill-style="diamond" onclick="addGou(this,'name20')">□</a>【现金】<a class="addGou"
+            name="name20" data-radio="01" onclick="addGou(this,'name20')">□</a>【银行转账】<a class="addGou" name="name20"
+            data-radio="other" onclick="addGou(this,'name20')">□</a>【<input name="name20" radio-input="otherValue" class="input-w80" />】方式于<input
+            name="yjjfr" target-type="dateInput" data-replace="yyyy" class="input-w80" />年<input name="yjjfr"
+            data-replace="mm" class="input-w50" />月<input name="yjjfr" data-replace="dd" class="input-w50" />日前向出租人支付。租赁期满或合同解除之日起3日内，出租人将押金抵扣承租人应交而未交的租金、费用以及承租人应当承担的违约金、赔偿金后，剩余部分应如数返还承租人，本合同另有约定的，从其约定。</p>
+        <p class="space"><strong>第五条 其他费用承担方式 </strong></p>
+        <p class="space">1．租赁期内，下列费用中：<input name="digitalhLeassorCost" class="input-w420 leaserCost" />及房屋租赁税由出租人承担，<input
+            name="digitalhLesseeCost" class="input-w420 renterCost" />由承租人承担。(1)水费(2)电费(3)网络宽带费(4)供暖费(5)燃气费(6)物业管理费(7)分租服务费(8)车位费(9)公共电费(10)公共水费(11)<input
+            name="name101" class="input-w270" />。房屋租赁其他费用计收标准见附件1。</p>
+        <p class="space">2．房屋分租中其他费用承担的补充约定如下：</p>
+        <p class="space"><input name="name27" class="input-w760" /></p>
+        <p><input name="name36" class="input-w780" /></p>
+        <p class="space">3．本合同中未列明的房屋租赁其他费用均由出租人承担。如承租人垫付了应由出租人支付的费用，出租人应根据承租人出示的相关交费凭据向承租人返还相应费用。</p>
+        <p class="space">4．承租人损害房屋所属物业管理区域公共利益或相邻关系人合法权益而支付的费用，或因不当使用房屋行为导致第三人损失而支付的费用，应由承租人承担。</p>
+        <p class="space"><strong>第六条 房屋使用及维修 </strong></p>
+        <p class="space">1．出租人保证房屋的建筑结构和设施设备符合建筑、消防等方面的安全条件，不擅自改变房屋内部规划布局且满足基本使用功能，不危及人身安全，并向承租人提供房屋及主要设施设备（如燃气、电器等）安全使用说明书（见附件3），督促承租人落实房屋使用安全措施。</p>
+        <p class="space">2. 承租人保证遵守国家、地方的法律法规规定以及本房屋所属物业管理区域的管理规约，按照规定的房屋用途合理使用房屋，对发现的安全隐患应当自行或者通知出租人消除。</p>
+        <p class="space">3．租赁期内，双方当事人应共同保障本房屋及其附属物品、设施设备处于适用和安全的状态。</p>
+        <p class="space">（1）对于本房屋及其附属物品、设施设备，因自然属性或合理使用等非承租人原因导致的损毁，承租人应及时通知出租人修复；出租人未在约定时间内维修、更换的，承租人可代为维修、更换，费用由出租人承担。</p>
+        <p class="space">（2）对于本房屋及其附属物品、设施设备，因承租人原因导致的损毁，由承租人负责维修、更换或承担赔偿责任。</p>
+        <p class="space">（3）分租房屋使用中，对于分租承租人应承担的房屋公共部位及其公用附属物品、设施设备的维修赔偿责任，若无法确定具体承租责任人的，应由相关分租承租人平均分担维修赔偿责任。</p>
+        <p class="space">4．租赁期内，未经出租人书面同意，承租人不得装饰装修、增设或拆改附属设施设备。</p>
+        <p class="space">5．租赁期内，承租人不得擅自改变房屋用途，不得利用本房屋从事违法活动，不得损害公共利益或者妨碍他人正常工作、生活。</p>
+        <p class="space"><strong>第七条 其他特殊情况 </strong></p>
+        <p class="space">1．优先购买权：租赁期内，出租人出售本房屋的，按下列第<input name="name102" class="input-w50" />种方式解决。</p>
+        <p class="space">（1）出租人应当提前<input name="name103" class="input-w50" />日书面通知承租人，且不得影响承租人正常使用该房屋，承租人收到通知后<input
+            name="name104" class="input-w50" />日内，未书面回复是否愿意在同等条件下购买本房屋的，视为放弃优先购买权。</p>
+        <p class="space">（2）<input name="name28" class="input-w570" />。</p>
+        <p><input name="name29" class="input-w570" />。</p>
+        <p class="space">2．租赁期内，未经出租人书面同意，承租人不得将本房屋转租或转借给第三人。如出租人同意承租人转租或转借的，本租赁合同继续有效，第三人对房屋造成损失的，承租人应当赔偿损失。</p>
+        <p class="space">3．租赁期内，符合当地政府规定条件的承租人，在申请办理居住落户、义务教育、基本医疗、基本养老、就业服务、社会保障、住房保障等公共服务时，出租人应积极予以配合。</p>
+        <p class="space"><strong>第八条 合同解除 </strong></p>
+        <p class="space">1．双方当事人经协商一致或依法定合同解除情形，可以解除本合同。</p>
+        <p class="space">2．因一方当事人有下列情形之一的，另一方当事人有权通过本合同填写的通讯地址向对方邮寄送达《解除合同通知书》，单方解除本合同。</p>
+        <p class="space">（1）出租人迟延交付房屋达<input name="name105" class="input-w50" />日的；</p>
+        <p class="space">（2）出租人无权出租房屋或出租房屋违反法律法规禁止性规定的；</p>
+        <p class="space">（3）出租人交付的房屋严重不符合本合同约定的，或不履行本合同第六条约定的义务导致房屋无法居住的；</p>
+        <p class="space">（4）承租人不按照约定支付租金连续达<input name="name106" class="input-w50 yfycjzrx" />日或累计达<input name="name108"
+            class="input-w50 yfycjzrx" />日以上的，或欠交各类费用超过￥<input name="name107" class="input-w50" />元的；</p>
+        <p class="space">（5）承租人改变房屋使用用途或擅自将房屋转租、转借的；</p>
+        <p class="space">（6）承租人拆改变动、损坏房屋主体结构或擅自改变房屋内部规划布局的；</p>
+        <p class="space">（7）承租人利用房屋从事违法活动、损害公共利益等相关情形的；</p>
+        <p class="space">（8）承租人保管不当或不合理使用导致本房屋及其附属物品、设施设备损毁，且拒不维修、更换或赔偿的；</p>
+        <p class="space">（9）一方当事人故意隐瞒与订立合同有关的重要事实或者提供虚假情况的；</p>
+        <p class="space">（10）<input name="name109" class="input-w560" />。</p>
+        <p class="space"><strong>第九条 违约责任</strong></p>
+        <p class="space">1．出租人或承租人如因第八条第二款所列情形被对方单方解除合同的，其中涉及第<input name="name110" class="input-w150" />项，应【按月租金的<input
+            name="name111" class="input-w50" />%向对方支付违约金】【<input name="name113" class="input-w270" />】；涉及第<input name="name112"
+            class="input-w150" />项，应【赔偿对方实际损失】【<input name="name114" class="input-w270" />】。</p>
+        <p class="space">2．出租人或者承租人有违反本合同约定条款的行为，但未达到解除合同条件的，应【赔偿对方实际损失】【按月租金的<input name="name115" class="input-w50 wyjbl" />%向对方支付违约金】。</p>
+        <p class="space">3．除本合同第八条第二款约定情形外，出租人需提前收回房屋的，或承租人需提前退租的，应提前<input name="name116" class="input-w50" />日书面通知对方，【按月租金的<input
+            name="name117" class="input-w50" />%向对方支付违约金】【<input name="name118" class="input-w270" />】。同时，双方当事人按照合同的实际履行时间结算租金及其他相关费用。</p>
+        <p class="space">4．出租人未按约定履行维修义务造成承租人人身、财产损失的，出租人应承担相应赔偿责任。</p>
+        <p class="space">5.<input name="name119" class="input-w570" />。</p>
+        <p class="space"><strong>第十条 其他约定 </strong></p>
+        <p class="space"><input name="remark" target-type="wordbreakInput" data-input="0" data-length="38" class="input-w700" /></p>
+        <p><input name="remark" class="input-w710" />。</p>
+        <p class="space"><strong>第十一条 争议解决方式 </strong></p>
+        <p class="space">本合同项下发生的争议，由双方当事人协商解决；协商不成的，按照下列第<input name="name170" class="input-w50" />种方式解决。</p>
+        <p class="space">1．依法向房屋所在地的人民法院起诉。</p>
+        <p class="space">2．提交<input name="name120" class="input-w150" />仲裁委员会仲裁。</p>
+        <p class="space"><strong>第十二条 合同生效 </strong></p>
+        <p class="space">本合同自双方当事人签字或盖章之日起生效。本合同一式<input name="name121" class="input-w60" />份，其中出租人执<input name="name122"
+            class="input-w60" />份，承租人执<input name="name124" class="input-w60" />份，<input name="name123" class="input-w150" />，具有同等法律效力。</p>
+        <p class="space">本合同文本有房屋交付确认书、房屋权属证明资料及房屋平面图、房屋及主要设施设备安全使用说明书、房屋交还确认书四个附件；通过房地产经纪机构成交的，房屋租赁经纪服务合同应作为本合同的附件。本合同生效后，双方当事人对合同内容的变更或补充应采取书面形式，作为本合同的附件。附件与本合同具有同等的法律效力。</p>
+      </div>
+      <div class="fo">
+
+        <table class="signature-section">
+          <tr>
+            <td>
+              <div class="box-center"><B>出租人</B>（签字或盖章）：<span name="signatureEntJ1" target-type="signature" class="signature-show signature-lessor"><img /></span></div>
+            </td>
+            <td>
+              <div class="box-center"><B>承租人</B>（签字或盖章）：<span name="signatureEntY1" target-type="signature" data-power="lessee"
+                  class="signature-show signature-lessee"><img /></span></div>
+            </td>
+          </tr>
+          <tr>
+            <td>【法定代表人】（签字或盖章）：</td>
+            <td>【法定代表人】（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【委托】代理人（签字或盖章）：</td>
+            <td>【委托】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【法定】代理人（签字或盖章）：</td>
+            <td>【法定】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td><span class="currentdate"> 签订时间：<input name="name30" dateState="nowDate" target-type="dateInput" data-replace="yyyy" class="input-w50" />年<input
+                  name="name30" data-replace="mm" class="input-w50" />月<input name="name30" data-replace="dd" class="input-w50" />日</span></td>
+            <td><span class="currentdate"> 签订时间：<input name="name31" dateState="nowDate" data-power="lessee" target-type="dateInput"
+                  data-replace="yyyy" class="input-w50" />年<input name="name31" data-replace="mm" class="input-w50" />月<input
+                  name="name31" data-replace="dd" class="input-w50" />日</span></td>
+          </tr>
+          <tr>
+            <td>签订地点：<input name="name133" class="input-w220" /></td>
+            <td>签订地点：<input name="name134" data-power="lessee" class="input-w220" /></td>
+          </tr>
+        </table>
+        <p>附件1</p>
+        <p class="head3">房屋交付确认书</p>
+        <p class="head4">&nbsp;&nbsp;&nbsp;&nbsp;一、房屋验收表</p>
+        <p class="space">本验收表的内容，依据房屋交付时出租人提供的资料、房屋实际情况综合记载。房屋出租人应对填写的内容真实性、完整性负责。</p>
+        <table border="1" target-type="table"　cellspacing="0" cellpadding="0" name="table1">
+          <tr class="table-width-set">
+            <td class="input-w25"></td>
+            <td class="input-w85"></td>
+            <td class="input-w170"></td>
+            <td class="input-w90"></td>
+            <td class="input-w90"></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colSpan="2">房屋坐落</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td colSpan="2">项目（勾选）</td>
+            <td colSpan="4"><a class="addGou" name="name1" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name1')">□</a>整租&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<a class="addGou"
+                name="name1" data-radio="01" onclick="addGou(this,'name1')">□</a>分租</td>
+          </tr>
+          <tr>
+            <td>分类</td>
+            <td>名称</td>
+            <td>使用情况</td>
+            <td>名称</td>
+            <td colSpan="2">使用情况</td>
+          </tr>
+          <tr>
+            <td rowSpan="5">附属房屋</td>
+            <td>客厅</td>
+            <td><a class="addGou" name="name24" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name24')">□</a>无<a
+                class="addGou" name="name24" data-radio="01" onclick="addGou(this,'name24')">□</a>独立使用<a class="addGou"
+                name="name24" data-radio="02" onclick="addGou(this,'name24')">□</a>共用</td>
+            <td>储藏室</td>
+            <td colSpan="2"><a class="addGou" name="name2" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name2')">□</a>无<a class="addGou" name="name2" data-radio="01" onclick="addGou(this,'name2')">□</a>独立使用<a
+                class="addGou" name="name2" data-radio="02" onclick="addGou(this,'name2')">□</a>共用 编号:<input class="input-w75" />
+            </td>
+          </tr>
+          <tr>
+            <td>厨房</td>
+            <td><a class="addGou" name="name3" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name3')">□</a>无<a
+                class="addGou" name="name3" data-radio="01" onclick="addGou(this,'name3')">□</a>独立使用<a class="addGou"
+                name="name3" data-radio="02" onclick="addGou(this,'name3')">□</a>共用</td>
+            <td>地下室</td>
+            <td colSpan="2"><a class="addGou" name="name4" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name4')">□</a>无<a class="addGou" name="name4" data-radio="01" onclick="addGou(this,'name4')">□</a>独立使用<a
+                class="addGou" name="name4" data-radio="02" onclick="addGou(this,'name4')">□</a>共用 编号:<input class="input-w75" />
+            </td>
+          </tr>
+          <tr>
+            <td>卫生间</td>
+            <td><a class="addGou" name="name5" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name5')">□</a>无<a
+                class="addGou" name="name5" data-radio="01" onclick="addGou(this,'name5')">□</a>独立使用<a class="addGou"
+                name="name5" data-radio="02" onclick="addGou(this,'name5')">□</a>共用</td>
+            <td>小房</td>
+            <td colSpan="2"><a class="addGou" name="name6" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name6')">□</a>无<a class="addGou" name="name6" data-radio="01" onclick="addGou(this,'name6')">□</a>独立使用<a
+                class="addGou" name="name6" data-radio="02" onclick="addGou(this,'name6')">□</a>共用 编号:<input class="input-w75" />
+            </td>
+          </tr>
+          <tr>
+            <td>阳台</td>
+            <td><a class="addGou" name="name7" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name7')">□</a>无<a
+                class="addGou" name="name7" data-radio="01" onclick="addGou(this,'name7')">□</a>独立使用<a class="addGou"
+                name="name7" data-radio="02" onclick="addGou(this,'name7')">□</a>共用</td>
+            <td>车库/车位</td>
+            <td colSpan="2"><a class="addGou" name="name8" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name8')">□</a>无<a class="addGou" name="name8" data-radio="01" onclick="addGou(this,'name8')">□</a>独立使用<a
+                class="addGou" name="name8" data-radio="02" onclick="addGou(this,'name8')">□</a>共用 编号:<input class="input-w75" />
+            </td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td colSpan="2"><input /></td>
+          </tr>
+          <tr>
+            <td>分类</td>
+            <td>名称</td>
+            <td>交纳人</td>
+            <td colSpan="3">备 注</td>
+          </tr>
+          <tr>
+            <td rowSpan="10">各项费用</td>
+            <td>水费</td>
+            <td><a class="addGou" name="name21" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name21')">□</a>出租人<a
+                class="addGou" name="name21" data-radio="01" onclick="addGou(this,'name21')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>电费</td>
+            <td><a class="addGou" name="name9" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name9')">□</a>出租人<a
+                class="addGou" name="name9" data-radio="01" onclick="addGou(this,'name9')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>燃气费</td>
+            <td><a class="addGou" name="name10" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name10')">□</a>出租人<a
+                class="addGou" name="name10" data-radio="01" onclick="addGou(this,'name10')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>供暖费</td>
+            <td><a class="addGou" name="name11" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name11')">□</a>出租人<a
+                class="addGou" name="name11" data-radio="01" onclick="addGou(this,'name11')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>物业服务费</td>
+            <td><a class="addGou" name="name12" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name12')">□</a>出租人<a
+                class="addGou" name="name12" data-radio="01" onclick="addGou(this,'name12')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>分租服务费</td>
+            <td><a class="addGou" name="name13" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name13')">□</a>出租人<a
+                class="addGou" name="name13" data-radio="01" onclick="addGou(this,'name13')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>公用电费</td>
+            <td><a class="addGou" name="name14" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name14')">□</a>出租人<a
+                class="addGou" name="name14" data-radio="01" onclick="addGou(this,'name14')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>公用水费</td>
+            <td><a class="addGou" name="name22" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name22')">□</a>出租人<a
+                class="addGou" name="name22" data-radio="01" onclick="addGou(this,'name22')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>网络宽带费</td>
+            <td><a class="addGou" name="name23" target-type="radio" fill-style="diamond" data-radio="00" onclick="addGou(this,'name23')">□</a>出租人<a
+                class="addGou" name="name23" data-radio="01" onclick="addGou(this,'name23')">□</a>承租人</td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td colSpan="3"><input /></td>
+          </tr>
+          <tr>
+            <td>分类</td>
+            <td>名 称</td>
+            <td>品牌/质地</td>
+            <td>数量</td>
+            <td>型号</td>
+            <td>物品状况（保修单）</td>
+          </tr>
+          <tr>
+            <td rowSpan="8">家用电器</td>
+            <td>电视机</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>空调</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>冰箱</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>微波炉</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>燃气灶</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>抽油烟机</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>洗衣机</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>热水器</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td rowSpan="7">家具</td>
+            <td>床</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>书桌</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>衣柜</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>沙发</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>茶几</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>餐桌/餐椅</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td rowSpan="8">其他设施及装修</td>
+            <td>坐便器</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>防盗门</td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>客厅地板</td>
+            <td colSpan="3"><a class="addGou" name="name177" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name177')">□</a>地砖&emsp;&emsp;<a class="addGou" name="name177" data-radio="01"
+                onclick="addGou(this,'name177')">□</a>木地板&emsp;&emsp;<a class="addGou" name="name177" data-radio="02"
+                onclick="addGou(this,'name177')">□</a>水泥地</td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>卧室地板</td>
+            <td colSpan="3"><a class="addGou" name="name178" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name178')">□</a>地砖&emsp;&emsp;<a class="addGou" name="name178" data-radio="01"
+                onclick="addGou(this,'name178')">□</a>木地板&emsp;&emsp;<a class="addGou" name="name178" data-radio="02"
+                onclick="addGou(this,'name178')">□</a>水泥地</td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>厨卫</td>
+            <td colSpan="3"><a class="addGou" name="name179" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name179')">□</a>地砖&emsp;&emsp;<a class="addGou" name="name179" data-radio="01"
+                onclick="addGou(this,'name179')">□</a>木地板&emsp;&emsp;<a class="addGou" name="name179" data-radio="02"
+                onclick="addGou(this,'name179')">□</a>水泥地</td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>窗户</td>
+            <td colSpan="3"><a class="addGou" name="name180" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name180')">□</a>地砖&emsp;&emsp;<a class="addGou" name="name180" data-radio="01"
+                onclick="addGou(this,'name180')">□</a>木地板&emsp;&emsp;<a class="addGou" name="name180" data-radio="02"
+                onclick="addGou(this,'name180')">□</a>水泥地</td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td>阳台</td>
+            <td colSpan="3"><a class="addGou" name="name181" target-type="radio" fill-style="diamond" data-radio="00"
+                onclick="addGou(this,'name181')">□</a>地砖&emsp;&emsp;<a class="addGou" name="name181" data-radio="01"
+                onclick="addGou(this,'name181')">□</a>木地板&emsp;&emsp;<a class="addGou" name="name181" data-radio="02"
+                onclick="addGou(this,'name181')">□</a>水泥地</td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td colSpan="3"><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td rowSpan="7">物品</td>
+            <td>名称</td>
+            <td colSpan="4">物品状况及数量</td>
+          </tr>
+          <tr>
+            <td>遥控器</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td>门禁卡</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td>钥匙</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td>水卡</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td>点卡</td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td colSpan="4"><input /></td>
+          </tr>
+          <tr>
+            <td>报修电话</td>
+            <td colSpan="5">
+              <div><span class="table-span">物业服务电话：<input class="input-w150" name="name171" /></span><span class="table-span">用水报修电话：<input
+                    class="input-w150" name="name174" /></span></div>
+              <div><span class="table-span">供暖报修电话：<input class="input-w150" name="name172" /></span><span class="table-span">燃气报修电话：<input
+                    class="input-w150" name="name175" /></span></div>
+              <div><span class="table-span">用电报修电话：<input class="input-w150" name="name173" /></span><span class="table-span">其他报修电话：<input
+                    class="input-w150" name="name176" /></span></div>
+            </td>
+          </tr>
+        </table>
+        <p class="head4">&nbsp;&nbsp;&nbsp;&nbsp;二、房屋租赁其他费用计收标准</p>
+        <table border="1" target-type="table" 　cellspacing="0" cellpadding="0" name="table2">
+          <tr>
+            <td class="input-w85">项目</td>
+            <td>单位</td>
+            <td>单价（元）</td>
+            <td class="input-w120">起计时间</td>
+            <td>起计底数</td>
+            <td class="input-w85">项目</td>
+            <td>单位</td>
+            <td>单价（元）</td>
+            <td class="input-w120">起计时间</td>
+          </tr>
+          <tbody>
+            <tr>
+              <td>水费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td>供暖费</td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+            <tr>
+              <td>电费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td>物业服务费</td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+            <tr>
+              <td>燃气费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td>分租服务费</td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+            <tr>
+              <td>公共电费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td>车位费</td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+            <tr>
+              <td>公共水费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+            <tr>
+              <td>网络宽带费</td>
+              <td><input /></td>
+              <td><input />
+              </td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+              <td><input /></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="space">注：如遇政府部门或实际收费部门调整计收标准的，应据实作相应调整。</p>
+        <p class="head4">&nbsp;&nbsp;&nbsp;&nbsp;三、实际居住人信息</p>
+        <table border="1" target-type="table" 　cellspacing="0" cellpadding="0" name="table3">
+          <tr>
+            <td class="input-n-w40">序号</td>
+            <td class="input-w80">姓名</td>
+            <td class="input-w80">证件类型</td>
+            <td class="input-w170">证号</td>
+            <td class="input-n-w150">联系电话</td>
+            <td class="input-w150">备注</td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+          <tr>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+            <td><input /></td>
+          </tr>
+        </table>
+        <p class="head4">&nbsp;&nbsp;&nbsp;&nbsp;四、其他约定</p>
+        <p class="space"><input name="name32" class="input-w730" /></p>
+        <p><input name="name35" class="input-w730" />。</p>
+        <br /><br />
+        <table class="signature-section">
+          <tr>
+            <td>
+              <div class="box-center"><B>出租人</B>（签字或盖章）：<span name="signatureEntJ2" target-type="signature" class="signature-show signature-lessor"><img /></span></div>
+            </td>
+            <td>
+              <div class="box-center"><B>承租人</B>（签字或盖章）：<span name="signatureEntY2" target-type="signature" data-power="lessee"
+                  class="signature-show signature-lessee"><img /></span></div>
+            </td>
+          </tr>
+          <tr>
+            <td>【法定代表人】（签字或盖章）：</td>
+            <td>【法定代表人】（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【委托】代理人（签字或盖章）：</td>
+            <td>【委托】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【法定】代理人（签字或盖章）：</td>
+            <td>【法定】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td><span class="currentdate"> 签订时间：<input name="name37" dateState="nowDate" target-type="dateInput" data-replace="yyyy" class="input-w50" />年<input
+                  name="name37" data-replace="mm" class="input-w50" />月<input name="name37" data-replace="dd" class="input-w50" />日</span></td>
+            <td><span class="currentdate"> 签订时间：<input name="name38" dateState="nowDate" data-power="lessee" target-type="dateInput"
+                  data-replace="yyyy" class="input-w50" />年<input name="name38" data-replace="mm" class="input-w50" />月<input
+                  name="name38" data-replace="dd" class="input-w50" />日</span></td>
+          </tr>
+          <tr>
+            <td>签订地点：<input name="name139" class="input-w220" /></td>
+            <td>签订地点：<input name="name144" data-power="lessee" class="input-w220" /></td>
+          </tr>
+        </table>
+        <br /><br />
+        <p>附件2</p>
+        <p class="head3">房屋权属证明资料及房屋平面图</p>
+        <div class="file-upload-group">
+          <form name="file1" target-type="addImgUploader" fileUpload-style='{"fileType": "add","limit": 15}'>
+            <div class="file-upload">
+              <div class="file-progress">
+                <div class="progress">
+                  <div class="progress-bar">上传中...</div>
+                </div>
+              </div>
+              <label class="file-select">
+                <img alt="" name="" />
+                <input type="file" name="file" file-type="add" />
+                <div class="text"></div>
+                <i class="file-delete"></i>
+              </label>
+            </div>
+          </form>
+        </div>
+        <p>附件3</p>
+        <p class="head3">房屋及主要设施设备安全使用说明书</p>
+        <p class="space">一、房屋使用说明书</p>
+        <p class="space">二、燃气设施及用气设备安全使用说明</p>
+        <p class="space">三、用电设施及主要用电设备安全使用说明</p>
+        <p class="space">四、其他设施设备安全使用说明</p>
+        <p>附件4</p>
+        <p class="head3">房屋交还确认书</p>
+        <p class="space">双方当事人已对租赁房屋（坐落：<input name="name145" class="input-w300 address" />）和附属物品、设施设备及水电使用等情况进行交验，承租人结清了其应承担的费用，出租人同意收回房屋。</p>
+        <p class="space">有关费用的承担、押金返还、房屋及其附属物品设施设备的返还 <a class="addGou" name="name26" data-radio="01" target-type="radio"
+            fill-style="diamond" onclick="addGou(this,'name26')">□</a>无纠纷/<a class="addGou" name="name26" data-radio="02"
+            onclick="addGou(this,'name26')">□</a>附以下说明：</p>
+        <p class="space"><input name="name33" class="input-w760" /></p>
+        <p class="space"><input name="name34" class="input-w570" />。</p>
+        <table class="signature-section">
+          <tr>
+            <td>
+              <div class="box-center"><B>出租人</B>（签字或盖章）：<span name="signatureEntJ3" target-type="signature" class="signature-show signature-lessor"><img /></span></div>
+            </td>
+            <td>
+              <div class="box-center"><B>承租人</B>（签字或盖章）：<span name="signatureEntY3" target-type="signature" data-power="lessee"
+                  class="signature-show signature-lessee"><img /></span></div>
+            </td>
+          </tr>
+          <tr>
+            <td>【法定代表人】（签字或盖章）：</td>
+            <td>【法定代表人】（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【委托】代理人（签字或盖章）：</td>
+            <td>【委托】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td>【法定】代理人（签字或盖章）：</td>
+            <td>【法定】代理人（签字或盖章）：</td>
+          </tr>
+          <tr>
+            <td><span class="currentdate"> 签订时间：<input name="name39" dateState="nowDate" target-type="dateInput" data-replace="yyyy" class="input-w50" />年<input
+                  name="name39" data-replace="mm" class="input-w50" />月<input name="name39" data-replace="dd" class="input-w50" />日</span></td>
+            <td><span class="currentdate"> 签订时间：<input name="name40" dateState="nowDate" data-power="lessee" target-type="dateInput"
+                  data-replace="yyyy" class="input-w50" />年<input name="name40" data-replace="mm" class="input-w50" />月<input
+                  name="name40" data-replace="dd" class="input-w50" />日</span></td>
+          </tr>
+          <tr>
+            <td>签订地点：<input name="name41" class="input-w220" /></td>
+            <td>签订地点：<input name="name42" data-power="lessee" class="input-w220" /></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="vendor/jquery.min.js"></script>
+<script src="vendor/jquery.form.js"></script>
+<script src="vendor/imgUpload.js"></script>
+<script src="vendor/singleUpload.js"></script>
+<script src="vendor/addUpload.js"></script>
+<script src="vendor/multipleUpload.js"></script>
+<script src="vendor/jSignature.js"></script>
+<script src="js/agreedData.js"></script>
+<script src="js/class.js"></script>
+<script src="js/sigrc.js"></script>
+<script>
+
+  function addGou(id) {
+    var index = $(id).html();
+    if (index == '□') {
+      var attrName = $(id).attr('name');
+      $('a[name=' + attrName + ']').html('□');
+      $(id).html('■');
+    } else if (index == '■') {
+      $(id).html('□');
+    }
+  }
+
+  Funi.use('jquery', function ($) {
+    //签名隐藏
+    $('.signature-show').css('display','none');
+    //图片上传样式处理
+    if ($('form[fileUpload-style]').setFileUploadStyle) {
+      $('form[fileUpload-style]').setFileUploadStyle();
+    }
+    $("#formId1").submit(function () {
+      $('.updateload').empty();
+      $('.del-pic').remove();
+      $('img').each(function () {
+        var imgPath = $(this).attr('src');
+        $(this).attr('tencont-path', imgPath);
+      });
+
+      $('.contract input').each(function (i) {
+        $(this).removeAttr('readOnly');
+      })
+      //图片上传提交时候的样式处理
+      $('.file-delete,.batch-file-close,.batch-file-select').css('display', 'none');
+      $('[file-type="add"]').closest('form').css('display', 'none');
+      $('input[type="file"]').remove();
+
+      $("#textContract").val($(".contract").formhtml());
+      $('#contract_publish').attr('disabled', true);
+    });
+
+    function formatdate(pattern, date) {
+      if (date) {
+        date = new Date(date);
+        var y = date.getFullYear();
+        var m = date.getMonth();
+        var d = date.getDate();
+        if (parseInt(m) < 9) {
+          m = '0' + (m + 1);
+        } else {
+          m = parseInt(m) + 1;
+        }
+        if (parseInt(d) < 10) {
+          d = '0' + d;
+        }
+        if (pattern) {
+          if ('yyyy' == pattern) {
+            return y;
+          } else if ('mm' == pattern) {
+            return m;
+          } else if ('dd' == pattern) {
+            return d;
+          } else {
+            return '';
+          }
+        } else {
+          return y + ' 年 ' + m + ' 月 ' + d + ' 日';
+        }
+      } else {
+        return '';
+      }
+    }
+
+    function changeToChinese(money) {
+      var cnNums = new Array('零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖');
+      var cnIntRadice = new Array('', '拾', '佰', '仟');
+      var cnIntUnits = new Array('', '万', '亿', '兆');
+      var cnDecUnits = new Array('角', '分', '毫', '厘');
+      var cnInteger = '整';
+      var cnIntLast = '元';
+      var maxNum = 999999999999999.9999;
+      var integerNum;
+      var decimalNum;
+      var chineseStr = '';
+      var parts;
+      if (money == '') { return ''; }
+      money = parseFloat(money);
+      if (money >= maxNum) {
+        return '******';
+      }
+      if (money == 0) {
+        chineseStr = cnNums[0] + cnIntLast + cnInteger;
+        return chineseStr;
+      }
+      money = money.toString();
+      if (money.indexOf('.') == -1) {
+        integerNum = money;
+        decimalNum = '';
+      } else {
+        parts = money.split('.');
+        integerNum = parts[0];
+        decimalNum = parts[1].substr(0, 4);
+      }
+      if (parseInt(integerNum, 10) > 0) {
+        var zeroCount = 0;
+        var IntLen = integerNum.length;
+        for (var i = 0; i < IntLen; i++) {
+          var n = integerNum.substr(i, 1);
+          var p = IntLen - i - 1;
+          var q = p / 4;
+          var m = p % 4;
+          if (n == '0') {
+            zeroCount++;
+          } else {
+            if (zeroCount > 0) {
+              chineseStr += cnNums[0];
+            }
+            zeroCount = 0;
+            chineseStr += cnNums[parseInt(n)] + cnIntRadice[m];
+          }
+          if (m == 0 && zeroCount < 4) {
+            chineseStr += cnIntUnits[q];
+          }
+        }
+        chineseStr += cnIntLast;
+      }
+      if (decimalNum != '') {
+        var decLen = decimalNum.length;
+        for (var i = 0; i < decLen; i++) {
+          var n = decimalNum.substr(i, 1);
+          if (n != '0') {
+            chineseStr += cnNums[Number(n)] + cnDecUnits[i];
+          }
+        }
+      }
+      if (chineseStr == '') {
+        chineseStr += cnNums[0] + cnIntLast + cnInteger;
+      } else if (decimalNum == '') {
+        chineseStr += cnInteger;
+      }
+      return chineseStr;
+    }
+
+    var tenContId = $('.tenContId').val();
+    var houseCode = $('.houseCode').val();
+    $.ajax({
+      method: 'POST',
+      url: 'getContract.json',
+      dataType: 'json',
+      async: false,
+      data: { tenContId: tenContId, houseCode: houseCode },
+      success: function (data) {
+        if (data.status && data.result) {
+          data = data.result;
+          if (data.contEntList) {
+            person(data.contEntList);
+          }
+          house(data.house);
+          cont(data);
+        }
+      }
+    });
+
+
+    function cont(data) {
+      $('.code input').val(data.cont.code);
+      $('.cgzrs').val(data.cont.cgzrs);
+      $('.maxRentPerson').val(data.maxRentPerson);
+      $('.beginyear').val(formatdate('yyyy', data.cont.beginDate));
+      $('.beginmonth').val(formatdate('mm', data.cont.beginDate));
+      $('.beginday').val(formatdate('dd', data.cont.beginDate));
+      $('.endyear').val(formatdate('yyyy', data.cont.endDate));
+      $('.endmonth').val(formatdate('mm', data.cont.endDate));
+      $('.endday').val(formatdate('dd', data.cont.endDate));
+      $('.rentmoney').val(data.cont.money);
+      $('.bigrentmoney').val(changeToChinese(data.cont.money));
+      if (data.cont.zjjszq == '1') {
+        $('#zjjszqType').html('■【月】□【<input type="text" class="input-w80 "/>】');
+      } else {
+        $('#zjjszqType').html('□【月】■【<input type="text" class="input-w80 "/>】');
+      }
+      if(data.cont.zllx == '02'){
+	    $('#zllx').html('<span>□</span>【整租】<span>■</span>【分租】');
+      } else{
+	    $('#zllx').html('<span>■</span>【整租】<span>□</span>【分租】');  
+      }
+      $('.deposit').val(data.cont.deposit);
+      $('.bigdeposit').val(changeToChinese(data.cont.deposit));
+      $('.currentdate').html("签订时间：" + formatdate('', data.nowDate));
+      $('.deliveryyear').val(formatdate('yyyy', data.cont.jfrq));
+      $('.deliverymonth').val(formatdate('mm', data.cont.jfrq));
+      $('.deliveryday').val(formatdate('dd', data.cont.jfrq));
+      // $('.leaserCost').val(data.leaserCost);
+      // $('.renterCost').val(data.renterCost);
+      $('.leaserCost').val(data.cont.cgzrcdzr);
+      $('.renterCost').val(data.cont.cuzrcdzr);
+    }
+
+
+    function house(house) {
+      $('.address').val(house.address);
+      $('.jdmc').val(house.jdmc);
+      $('.totalFloors').val(house.totalFloors);
+      $('.floor').val(house.floor);
+      $('.buildingArea').val(house.buildingArea);
+      $('.wssl').val(house.wssl);
+      $('.tsl').val(house.tsl);
+      $('.cfsl').val(house.cfsl);
+      $('.wsjsl').val(house.wsjsl);
+      var structure = '';
+      var num2 = parseInt(house.structure);
+      switch (num2) {
+        case 1: structure = '钢结构';
+          break;
+        case 2: structure = '钢、钢筋混凝土结构';
+          break;
+        case 3: structure = '钢筋混凝土结构';
+          break;
+        case 4: structure = '混合结构';
+          break;
+        case 5: structure = '砖木结构';
+          break;
+        case 99: structure = '其他结构';
+          break;
+      }
+      $('.structure').val(structure);
+      $('.cqrxm').val(house.cqrxm);
+      $('.housecode').val(house.housecode);
+      $('.cno').val(house.cno);
+      if (house.cqzlx == '房屋所有权证' || house.cqzlx == '不动产权证书') {
+        $('#cqzlxType').html('■【不动产权证书（房屋所有权证）】□【买卖合同】□【<input type="text" class="input-w150 "/>】');
+      } else if (house.cqzlx == '买卖合同') {
+        $('#cqzlxType').html('□【不动产权证书（房屋所有权证）】■【买卖合同】□【<input type="text" class="input-w150 "/>】');
+      } else {
+        $('#cqzlxType').html('□【不动产权证书（房屋所有权证）】□【买卖合同】■【<input type="text" class="input-w150 "/>】');
+      }
+    }
+
+    function one(item, name, proxy) {
+      var html = '';
+      var cardNumber = '';
+      var phone = '';
+      var address = '';
+      var entName = '';
+      var cardType = '';
+      var corner = '';
+      if (item.corner != null) {
+        corner = item.corner;
+      }
+      if (item.cardType != null) {
+        cardType = item.cardType;
+      }
+      if (item.cardNumber != null) {
+        cardNumber = item.cardNumber;
+      }
+      if (item.phone != null) {
+        phone = item.phone;
+      }
+      if (item.entName != null) {
+        entName = item.entName;
+      }
+      if (item.address != null) {
+        address = item.address;
+      }
+      html = '<p><span>' + name + '</span><input class="input-w150" type="text" value="' + entName + '" />';
+      html = html + '出生日期：<input type="text" class="input-w80" />'
+        + '年<input type="text" class="input-w50" />'
+        + '月<input type="text" class="input-w50" />日,';
+      html = html + '性别：<input type="text" class="input-w50" />';
+      html = html + '国籍：<input type="text" class="input-w150 value="中国"/>';
+      if (corner == '1') {
+        html = html + '■【户籍所在地】□【居住地】:<input type="text" class="input-w400" value="' + item.cornerDesc + '"/></p>';
+      } else if (cardType == '2') {
+        html = html + '□【户籍所在地】■【居住地】:<input type="text" class="input-w400" value="' + item.cornerDesc + '"/></p>';
+      }
+      if (cardType == '01') {
+        html = html + '<p>证件类型：■【居民身份证】□【社会统一信用代码】□【<input type="text" class="input-w120" />】';
+      } else if (cardType == '02') {
+        html = html + '<p>证件类型：□【居民身份证】■【社会统一信用代码】□【<input type="text" class="input-w120" />】';
+      } else {
+        html = html + '<p>证件类型：□【居民身份证】□【社会统一信用代码】■【<input type="text" class="input-w120" />】';
+      }
+      html = html + '证号：<input type="text" class="input-w300" value="' + cardNumber + '" /></p>';
+      html = html + '<p>通讯地址：<input type="text" class="input-w250 "  value="' + address + '"/>';
+      html = html + '邮政编码：<input type="text" class="input-w250"/></p>';
+      html = html + '<p>联系电话：<input type="text" class="input-w250" value="' + phone + '" />';
+      html = html + '电子邮箱：<input type="text" class="input-w250"/></p>';
+      return html;
+    }
+
+    function person(data) {
+      var leaser = '';
+      var renter = '';
+      $.each(data, function (index, item) {
+        if ("03" == item.entType) {
+          $('.entName1').val(item.entName);
+          renter = renter + '<p>出租人：<input type="text" class="input-w570" value="' + item.entName + '"/></p>';
+          renter = renter + one(item, '【法定代表人】【负责人】：', '');
+          renter = renter + '<p>收款账户（银行账户或网络支付账户）：<input type="text" class="input-w370"/></p>';
+          var proxy = '';
+          $.each(data, function (i, t) {
+            if ("06" == t.entType && item.id == t.proxyObjectId) {
+              proxy = proxy + one(t, '【委托】【法定】代理人：', t.proxyObjectId);
+            }
+          });
+          renter = renter + proxy;
+          renter = renter + '<p class="space">（出租人为多人时，可相应增加）</p>';
+        }
+        if ("02" == item.entType) {
+          $('.entName2').val(item.entName);
+          leaser = leaser + '<p>承租人：<input type="text" class="input-w570" value="' + item.entName + '"/></p>';
+          leaser = leaser + one(item, '【法定代表人】【负责人】：', '');
+          leaser = leaser + '<p>付款账户（银行账户或网络支付账户）：<input type="text" class="input-w370"/></p>';
+          var proxy = '';
+          $.each(data, function (i, t) {
+            if ("05" == t.entType && item.id == t.proxyObjectId) {
+              proxy = proxy + one(t, '【委托】【法定】代理人：', t.proxyObjectId);
+            }
+          });
+          leaser = leaser + proxy;
+          leaser = leaser + '<p class="space">（出租人为多人时，可相应增加）</p>';
+        }
+      });
+      $('.renter-list').html(renter);
+      $('.leaser-list').html(leaser);
+    }
+
+    $('.contract input').each(function (i) {
+      if ($(this).val()) {
+        $(this).attr('readOnly', true);
+      }
+    });
+  });
+</script>
+<script src="js/contractMethod.js"></script>
+<script src="js/data.js"></script>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同">
+  <meta name="description" content="房屋租赁合同">
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+  <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+    <h2>复选</h2>
+  <h3>合同基本信息示例</h3>
+  <div>当前的复选功能不存在约定数据</div>
+  <h4>效果</h4>
+  <h5>应用1：</h5>
+  <div>承租人承担费用【<a 
+    name="cgzrcdzrChk" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】水费【<a 
+    name="cgzrcdzrChk" data-checkbox="02"> </a>】电费【<a 
+    name="cgzrcdzrChk" data-checkbox="03"> </a>】网费【<a 
+    name="cgzrcdzrChk" data-checkbox="04"> </a>】管理费</div>
+  <h5>应用2：</h5>
+  <div>承租人承担费用【<a 
+    name="cgzrcdzrChk" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】水费【<a 
+    name="cgzrcdzrChk" data-checkbox="02"> </a>】电费【<a 
+    name="cgzrcdzrChk" data-checkbox="03"> </a>】网费【<a 
+    name="cgzrcdzrChk" data-checkbox="04"> </a>】管理费【<a 
+    name="cgzrcdzrChk" data-checkbox="other"> </a>】<input name="basicInput1"></div>
+  <h4>开发代码</h4>
+  <xmp>
+    应用1：
+<div>承租人承担费用【<a 
+  name="cgzrcdzrChk" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】水费【<a 
+  name="cgzrcdzrChk" data-checkbox="02"> </a>】电费【<a 
+  name="cgzrcdzrChk" data-checkbox="03"> </a>】网费【<a 
+  name="cgzrcdzrChk" data-checkbox="04"> </a>】管理费</div>
+    应用2：
+<div>承租人承担费用【<a 
+  name="cgzrcdzrChk" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】水费【<a 
+  name="cgzrcdzrChk" data-checkbox="02"> </a>】电费【<a 
+  name="cgzrcdzrChk" data-checkbox="03"> </a>】网费【<a 
+  name="cgzrcdzrChk" data-checkbox="04"> </a>】管理费【<a 
+  name="cgzrcdzrChk" data-checkbox="99"> </a>】<input name="basicInput1"></div>
+  </xmp>
+  <h4>开发说明</h4>
+  <h5>应用1：仅需要选项标签</h5>
+  <div>多个选项，使用a或span标签，name属性值添加同一个合同基本信息中的对应字段，标签内里面填入需要的非选中样式，标签属性添加data-checkbox属性，值为选项对应的选项值。</div>
+  <div>组件的首个a或span标签添加target-type="checkbox"标识，添加fill-style属性，值为选定的样式值，如下：</div>
+  <div>tick: { 非选中样式: '&emsp;', 选中样式: '&#10004;' }</div>
+  <div>diamond: { 非选中样式: '□', 选中样式: '■' }</div>
+  <h5>应用2：存在“其他”选项，并且“其他”选项的文本可编辑</h5>
+  <div>同理应用1，“其他”选项的data-checkbox值为配置的对应值，编辑的文本使用basicInput组件</div>
+  <br>
+  <br>
+  <h3>扩展信息示例</h3>
+  <h5>应用1：</h5>
+  <div>可编辑复选：【<a 
+    name="hlscsChk1" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】A【<a 
+    name="hlscsChk1" data-checkbox="02"> </a>】B【<a 
+    name="hlscsChk1" data-checkbox="03"> </a>】C【<a 
+    name="hlscsChk1" data-checkbox="04"> </a>】D</div>
+  <h5>应用2：</h5>
+  <div>可编辑复选：<a 
+    name="hlscsChk2" data-checkbox="01" target-type="checkbox" fill-style="diamond">□</a>A<a 
+    name="hlscsChk2" data-checkbox="02">□</a>B<a 
+    name="hlscsChk2" data-checkbox="03">□</a>C<a 
+    name="hlscsChk2" data-checkbox="04">□</a>D<a 
+    name="hlscsChk2" data-checkbox="other">□</a><input name="hlscsChk2" checkbox-input="otherValue"></div>
+  <h4>开发代码</h4>
+  <xmp>
+    应用1：
+<div>可编辑复选：【<a 
+  name="hlscsChk1" data-checkbox="01" target-type="checkbox" fill-style="tick">&emsp;</a>】A【<a 
+  name="hlscsChk1" data-checkbox="02"> </a>】B【<a 
+  name="hlscsChk1" data-checkbox="03"> </a>】C【<a 
+  name="hlscsChk1" data-checkbox="04"> </a>】D</div>
+    应用2：
+<div>可编辑复选：<a 
+  name="hlscsChk2" data-checkbox="01" target-type="checkbox" fill-style="diamond">□</a>A<a 
+  name="hlscsChk2" data-checkbox="02">□</a>B<a 
+  name="hlscsChk2" data-checkbox="03">□</a>C<a 
+  name="hlscsChk2" data-checkbox="04">□</a>D<a 
+  name="hlscsChk2" data-checkbox="other">□</a><input name="hlscsChk2" checkbox-input="otherValue"></div>
+  </xmp>
+  <h4>开发说明</h4>
+  <h5>应用1：仅需要选项标签</h5>
+  <div>多个选项，使用a或span标签，name属性值添加同一个不包含在合同基本信息中的随意字段，标签内里面填入需要的非选中样式，标签属性添加data-checkbox属性，值为选项对应的选项值。</div>
+  <div>组件的首个a或span标签添加target-type="checkbox"标识，添加fill-style属性，值为选定的样式值，如下：</div>
+  <div>tick: { 非选中样式: '&emsp;', 选中样式: '&#10004;' }</div>
+  <div>diamond: { 非选中样式: '□', 选中样式: '■' }</div>
+  <h5>应用2：需要有“其他”选项，以及“其他”对应的填写文本框</h5>
+  <div>同理应用1</div>
+  <div>“其他”选项的data-checkbox值为“other”</div>
+  <div>“其他”的编辑文本使用input标签，name为该组件的同一个字段，且需添加checkbox-input="otherValue"属性</div>
+  <!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+var data = {
+  cgzrcdzrChk: '01,02',//
+}
+data.btnCtrl = '03';
+contractInit(data);
+</script>
+
+</html>

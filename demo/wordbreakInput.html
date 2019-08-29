@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同">
+  <meta name="description" content="房屋租赁合同">
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+  <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+  <h2>可换行输入框</h2>
+  <h3>合同基本信息示例</h3>
+  <h4>效果</h4>
+  <div style="width: 300px;">房屋坐落：<input 
+    name="fwzl" target-type="wordbreakInput" data-input="0" data-length="13"/><input 
+    name="fwzl" /></div>
+  <h5>同一信息的多处使用</h5>
+  <div style="width: 300px;">房屋坐落：<input 
+    name="fwzl" target-type="wordbreakInput" data-input="0" data-length="8"/><input 
+    name="fwzl" data-length="8" /><input 
+    name="fwzl" /></div>
+  <h4>开发代码</h4>
+  <xmp>
+<div style="width: 300px;">房屋坐落：<input 
+  name="fwzl" target-type="wordbreakInput" data-input="0" data-length="13"/><input 
+  name="fwzl" /></div>
+  同一信息的多处使用
+<div style="width: 300px;">房屋坐落：<input 
+  name="fwzl" data-input="0" data-length="8"/><input 
+  name="fwzl" data-length="8" /><input 
+  name="fwzl" /></div>
+  </xmp>
+  <h4>开发说明</h4>
+  <div>使用多个input标签，name属性值添加同一个合同基本信息中的对应字段。</div>
+  <div>组件的首个input标签添加target-type="wordbreakInput"标识组件类型。</div>
+  <div>一个data-input="0"属性到下一个data-input="0"属性前（或结尾）为一组input标签对整个字符串值进行显示，非结尾input需要添加data-length属性，值为当前标签显示的字符串长度限制。</div>
+  <br>
+  <br>
+  <h3>扩展信息示例</h3>
+  <h4>效果</h4>
+  <div style="width: 300px;">可编辑换行文本：<input 
+    name="wordbreakInput1" target-type="wordbreakInput" data-input="0" data-length="13"/><input 
+    name="wordbreakInput1" /></div>
+  <h5>同一信息的多处使用</h5>
+  <div style="width: 300px;">可编辑换行文本：<input 
+    name="wordbreakInput1" target-type="wordbreakInput" data-input="0" data-length="8"/><input 
+    name="wordbreakInput1" data-length="8" /><input 
+    name="wordbreakInput1" /></div>
+  <h4>开发代码</h4>
+  <xmp>
+<div style="width: 300px;">可编辑换行文本：<input 
+  name="wordbreakInput1" target-type="wordbreakInput" data-input="0" data-length="13"/><input 
+  name="wordbreakInput1" /></div>
+<h5>同一信息的多处使用</h5>
+<div style="width: 300px;">可编辑换行文本：<input 
+  name="wordbreakInput1" target-type="wordbreakInput" data-input="0" data-length="8"/><input 
+  name="wordbreakInput1" data-length="8" /><input 
+  name="wordbreakInput1" /></div>
+<h4>开发代码</h4>
+  </xmp>
+  <h4>开发说明</h4>
+  <div>使用多个input标签，name属性值添加同一个不包含在合同基本信息中的随意字段。</div>
+  <div>组件的首个input标签添加target-type="wordbreakInput"标识组件类型。</div>
+  <div>一个data-input="0"属性到下一个data-input="0"属性前（或结尾）为一组input标签对整个字符串值进行显示，非结尾input需要添加data-length属性，值为当前标签显示的字符串长度限制。</div>
+  <!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+var data = {
+  fwzl: '广东省深圳市福田区xxxxx路xxxx号xxx大厦xxxx',//房屋坐落
+}
+data.btnCtrl = '03';
+contractInit(data);
+</script>
+
+</html>

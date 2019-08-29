@@ -1,0 +1,264 @@
+@charset "utf-8";
+html {
+  font-size: 625%;
+  box-sizing: border-box;
+}
+body {
+  font: normal 100% Arial, sans-serif;
+  font-family: "Microsoft Yahei", Arial;
+  font-size: 0.14rem;
+  font-size: 14px;
+  background: #f9f9f9;
+  color: #333333;
+  width: 100%;
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+a {
+  color: inherit;
+  cursor: pointer;
+}
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+}
+input:focus {
+  outline: 0;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+.box-center {
+  display: flex;
+  align-items: center;
+}
+.box-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cur {
+  cursor: pointer;
+}
+.cur-hover {
+  cursor: pointer;
+}
+.cur-hover:hover {
+  box-shadow: 0px 0px 1px 1px #ccc;
+}
+.row {
+  margin: 0;
+}
+.ellipsis {
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.b {
+  font-weight: bold;
+}
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+body,
+ul,
+ol,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#header{
+	position:relative;
+}
+#header h1 {
+  color: #fff;
+  font-size:38px;
+  height: 130px;
+  font-weight:bold;
+  line-height: 130px;
+  margin-left: calc(10% + 100% * 0.8 /14 - 18px);
+  margin-left: -webkit-calc(10% + 100% * 0.8 /14 - 18px);
+  margin-top: 0;
+}
+#header .nav {
+  background: #1076cd;
+  height: 100px;
+  font-size: 16px;
+  color: #d8d8d8;
+}
+#header .nav .menu li {
+  float: left;
+  padding: 0 10px;
+}
+#header .nav .menu li a:hover {
+  color: #fff;
+}
+#header .nav .title {
+	color:#fff;
+	font-size:23px;
+  	font-weight:bold;
+}
+#header .nav .personal {
+  float: right;
+  line-height:100px;
+}
+#header .nav .personal a {
+  padding: 0 10px;
+  cursor: pointer;
+}
+#header .nav .personal a:hover {
+  color: #fff;
+}
+#nav {
+  background-color: rgba(255,255,255,0.7);
+  position:absolute;
+  bottom:0;
+  width:100%;
+}
+#nav .menu {
+  width: 80%;
+  margin: 0 auto;
+  height: 40px;
+}
+#nav .menu li {
+  float: left;
+  width: calc(100% / 10 - 1px);
+  width: -webkit-calc(100% / 10 - 1px);
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+}
+#nav .menu li a {
+  display: block;
+  height: 45px;
+  font-size: 18px;
+  color: #1076cd;
+  text-decoration: none;
+}
+#nav .menu li:last-child {
+  margin-right: 0;
+}
+#nav .menu .active {
+  background-color: #fff;
+  color: #427AB7;
+}
+/*页角*/
+.foot{
+    width: 100%;
+    min-height: 100px;
+}
+.foot-detail{
+    width: 100%;
+    height: 120px;
+    background:#313131 ;
+    border-bottom: 2px solid #ccc;
+}
+.foot-detail p, .friLink p{
+    margin: 0 auto;
+    display: block;
+    width: 850px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 40px;
+}
+.foot-detail  span{
+    margin-right: 20px;
+}
+.friLink{
+    width: 100%;
+    height: 150px;
+    background:#313131 ;
+}
+.friLink p{
+    text-align: left;
+}
+.friLink a{
+    color: #ffffff;
+    margin-right: 20px;
+}
+/* 提示框按钮 */
+#my-modal-alert button{
+	background-color:#1076cd;
+}
+section {
+  width: 60%;
+  min-height: calc(100vh - 237px - 130px - 45px);
+  min-height: -webkit-calc(100vh - 237px - 130px - 45px);
+  margin: 0 auto;
+}
+form {
+  padding: 30px 0;
+}
+form .form-group input {
+  width: 400px;
+}
+form .form-group.button div a {
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+}
+form .form-group .control-mes {
+  padding: 7px 15px 7px 20px;
+}
+form .form-group .control-label {
+	padding-bottom: 7px;
+}
+form li.form-group {
+  margin-bottom: 5px;
+}
+.modal form {
+  padding: 0;
+}
+.form-horizontal .control-label {
+  padding-top: 7px;
+  text-align: right;
+  margin-bottom: 0;
+}
+.syn-logo{
+	float:left;
+	margin-top:15px;
+}
+.syn-logo .icon-img{
+	width:210px;
+}
+.nav-center{
+	width:80%;
+	margin:0 auto;
+}
+
+.pages{text-align:center;line-height:20px;margin:30px auto}
+.pages a{display:inline-block;border:1px solid #dfe1e4;padding:0 12px;color:#3260c3;text-decoration:none;font-size:14px;cursor:pointer;border-right:0 solid #ccc;height:33px;line-height:33px;overflow:hidden}
+.pages span{display:inline-block;border:1px solid #dfe1e4;padding:0 12px;color:#ccc;text-decoration:none;font-size:14px;border-right:0 solid #ccc;height:33px;line-height:33px;overflow:hidden}
+.pages a.last{border-right:1px solid #dfe1e4}
+.pages .on{color:#aaa}
+.pages a:hover,.pages a.on{background:#f4f4f4}
+.pages a:hover{text-decoration:none}
+.pages a.other{color:#ccc}
+.main .httpstatus{width:980px;height:450px;margin:20px auto;color:#01649c}
+.main .httpstatus .status-404,
+.main .httpstatus .bulid,
+.main .httpstatus .status-401,
+.main .httpstatus .status-500,
+.main .httpstatus .status-505{overflow:hidden;background:url(../imgs/404.png) left bottom no-repeat;height:300px;width:500px;margin:0 auto;background-position:0 145px;}
+.main .httpstatus .bulid{background:url(../imgs/404.png) left bottom no-repeat}
+.main .httpstatus .status-401{background:url(../imgs/404.png) left bottom no-repeat}
+.main .httpstatus .status-505{background:url(../imgs/404.png) left bottom no-repeat}
+.main .httpstatus b{color:#000;font-size:24px;font-family:"Microsoft Yahei","瀹嬩綋","arial";padding-left:100px;display:block;padding-top:140px}
+.main .httpstatus span{display:block;padding-left:100px;color:#666;padding-top:15px}

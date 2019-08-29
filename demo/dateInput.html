@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>房屋租赁合同</title>
+  <meta name="keywords" content="房屋租赁合同">
+  <meta name="description" content="房屋租赁合同">
+  <link rel="stylesheet" type="text/css" href="../css/public.css" />
+  <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+  <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+  <h2>日期输入框</h2>
+  <h3>合同基本信息示例</h3>
+  <h4>效果</h4>
+  <h5>应用1：</h5>
+  <div>出租人应于<input name="jfrq" target-type="dateInput" />前，将房屋按约定条件交付承租人。</div>
+  <h5>应用2：</h5>
+  <div>出租人应于<input name="jfrq" target-type="dateInput" data-replace="chs-formate" />前，将房屋按约定条件交付承租人。</div>
+  <h5>应用3：</h5>
+  <div>出租人应于<input 
+    name="jfrq" data-replace="yyyy" target-type="dateInput" class="input-w80" />年<input 
+    name="jfrq" data-replace="mm" class="input-w50" />月<input 
+    name="jfrq" data-replace="dd" class="input-w50" />日前，将房屋按约定条件交付承租人。</div>
+  <h4>开发代码</h4>
+  <xmp>
+    应用1：
+<div>出租人应于<input name="jfrq" target-type="dateInput" />前，将房屋按约定条件交付承租人。</div>
+    应用2：
+<div>出租人应于<input name="jfrq" target-type="dateInput" data-replace="chs-formate" />前，将房屋按约定条件交付承租人。</div>
+    应用3：
+<div>出租人应于<input 
+  name="jfrq" data-replace="yyyy" target-type="dateInput" class="input-w80" />年<input 
+  name="jfrq" data-replace="mm" class="input-w50" />月<input 
+  name="jfrq" data-replace="dd" class="input-w50" />日前，将房屋按约定条件交付承租人。</div>
+  </xmp>
+  <h4>开发说明</h4>
+  <h5>应用1：</h5>
+  <div>使用input标签，name属性值添加合同基本信息中的对应字段，添加target-type="moneyInput"属性，此时为默认日期格式“yyyy-mm-dd”</div>
+  <h5>应用2：</h5>
+  <div>需要日期格式“yyyy 年 mm 月 dd 日”时，在input标签，添加target-type="moneyInput"属性，添加data-replace="chs-formate"属性</div>
+  <h5>应用3：</h5>
+  <div>需要日期的年、月、日拆分使用时，使用三个input标签，name属性值添加同一个合同基本信息中的对应字段，第一个input添加target-type="moneyInput"属性，并依次添加data-replace="yyyy"、data-replace="mm"、data-replace="dd"属性</div>
+  <br>
+  <br>
+  <h3>扩展信息示例</h3>
+  <h5>应用1：</h5>
+  <div>时间1<input name="dateInput1" target-type="dateInput" /></div>
+  <h5>应用2：</h5>
+  <div>时间2<input name="dateInput2" target-type="dateInput" data-replace="chs-formate" /></div>
+  <h5>应用3：</h5>
+  <div>时间3<input 
+    name="dateInput3" data-replace="yyyy" target-type="dateInput" class="input-w80" />年<input 
+    name="dateInput3" data-replace="mm" class="input-w50" />月<input 
+    name="dateInput3" data-replace="dd" class="input-w50" />日</div>
+  <h5>应用4：</h5>
+  <div>时间4<input name="dateInput4" target-type="dateInput" /></div>
+  <div>时间4<input name="dateInput4" data-replace="chs-formate" /></div>
+  <div>时间4<input 
+    name="dateInput4" data-replace="yyyy" class="input-w80" />年<input 
+    name="dateInput4" data-replace="mm" class="input-w50" />月<input 
+    name="dateInput4" data-replace="dd" class="input-w50" />日</div>
+  <h5>应用5：</h5>
+  <div>时间5<input 
+    name="dateInput5" data-replace="yyyy" dateState="nowDate" class="input-w80" target-type="dateInput" />年<input 
+    name="dateInput5" data-replace="mm" class="input-w80" />月<input 
+    name="dateInput5" data-replace="dd" class="input-w80" />日</div>
+  <h5>应用6：</h5>
+  <div>时间6<input 
+    name="dateInput6" data-replace="yyyy" dateState="nowDate" class="input-w80" target-type="dateInput" />年<input 
+    name="dateInput6" data-replace="mm" class="input-w80" />月<input 
+    name="dateInput6" data-replace="dd" class="input-w80" />日</div>
+  <h4>开发代码</h4>
+  <xmp>
+    应用1：
+<div>时间1<input name="dateInput1" target-type="dateInput" /></div>
+    应用2：
+<div>时间2<input name="dateInput2" target-type="dateInput" data-replace="chs-formate" /></div>
+    应用3：
+<div>时间3<input 
+  name="dateInput3" data-replace="yyyy" target-type="dateInput" class="input-w80" />年<input 
+  name="dateInput3" data-replace="mm" class="input-w50" />月<input 
+  name="dateInput3" data-replace="dd" class="input-w50" />日</div>
+    应用4：
+<div>时间4<input name="dateInput4" target-type="dateInput" /></div>
+<div>时间4<input name="dateInput4" data-replace="chs-formate" /></div>
+<div>时间4<input 
+  name="dateInput4" data-replace="yyyy" class="input-w80" />年<input 
+  name="dateInput4" data-replace="mm" class="input-w50" />月<input 
+  name="dateInput4" data-replace="dd" class="input-w50" />日</div>
+<div>时间5<input 
+  name="dateInput5" data-replace="yyyy" dateState="nowDate" class="input-w80" target-type="dateInput" />年<input 
+  name="dateInput5" data-replace="mm" class="input-w80" />月<input 
+  name="dateInput5" data-replace="dd" class="input-w80" />日</div>
+<h5>应用6：</h5>
+<div>时间6<input 
+  name="dateInput6" data-replace="yyyy" dateState="nowDate" class="input-w80" target-type="dateInput" />年<input 
+  name="dateInput6" data-replace="mm" class="input-w80" />月<input 
+  name="dateInput6" data-replace="dd" class="input-w80" />日</div>
+  </xmp>
+  <h4>开发说明</h4>
+  <h5>应用1：</h5>
+  <div>使用input标签，name属性值添加不包含在合同基本信息中的随意字段，添加target-type="moneyInput"属性，此时为默认日期格式“yyyy-mm-dd”</div>
+  <h5>应用2：</h5>
+  <div>需要日期格式“yyyy 年 mm 月 dd 日”时，在input标签，添加target-type="moneyInput"属性，添加data-replace="chs-formate"属性</div>
+  <h5>应用3：</h5>
+  <div>需要日期的年、月、日拆分使用时，使用三个input标签，name属性值添加同一个不包含再合同基本信息中的随意字段，第一个input添加target-type="moneyInput"属性，并依次添加data-replace="yyyy"、data-replace="mm"、data-replace="dd"属性</div>
+  <h5>应用4：</h5>
+  <div>可混合使用，一处编辑，多处修改，开发方式同理，仅需绑定同一个name属性即可。</div>
+  <h5>应用5：</h5>
+  <div>在input标签，添加dateState="nowDate"属性，自动获取时间，仅需绑定同一个name属性即可。</div>
+  <h5>应用6：</h5>
+  <div>清除日期组件显示的日期，删除yyyy,mm,dd任意一个处，日期将会被清空。</div>
+  <!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<script src="../js/contractMethod.js"></script>
+<script>
+var data = {
+  jfrq: '2018-12-01',//租赁合同编号
+}
+data.btnCtrl = '03';
+contractInit(data);
+</script>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!-- saved from url=(0122)file:///C:/Users/ADMINI~1/AppData/Local/Temp/%E9%80%9A%E7%94%A8%E6%94%BF%E5%8A%A1%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF.html -->
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>房屋租赁合同</title>
+    <meta name="keywords" content="房屋租赁合同">
+    <meta name="description" content="房屋租赁合同">
+    <link rel="stylesheet" type="text/css" href="../css/public.css" />
+    <link rel="stylesheet" type="text/css" href="../css/pc.css" />
+    <link rel="stylesheet" type="text/css" href="../vendor/fileUpload.css?2" />
+</head>
+
+<body>
+<h2>水印</h2>
+<h3>合同基本信息示例</h3>
+<h4>效果</h4>
+<h5>应用1：</h5>
+<div>默认值</div>
+<div class="container" style="height:500px;">
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "10"></div>
+</div>
+<h5>应用2：</h5>
+<div>样式参数设置正确</div>
+<div class="container" style="height:500px;">
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "580" fontSize="30" fontColor="#4ad" textTransform="50" opacity="0.5"></div>
+</div>
+<h5>应用3：</h5>
+<div>样式参数设置错误</div>
+<div class="container" style="height:500px;">
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "1100" fontSize="-60" fontColor="#" textTransform="190" opacity="2"></div>
+</div>
+<h4>开发代码</h4>
+<xmp>
+    应用1：
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "10"></div>
+    应用2：
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "580" fontSize="30" fontColor="#4ad" textTransform="50" opacity="0.5"></div>
+    应用3：
+    <div class="waterMark" name="waterMarkContent" target-type="waterMark" top = "1100" fontSize="-60" fontColor="#" textTransform="190" opacity="2"></div>
+</xmp>
+<h4>开发说明</h4>
+<h5>参数使用说明</h5>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>属性</td><td>默认值</td><td>正确输入范围</td>
+    </tr>
+    <tr>
+        <td>top</td><td>1536</td><td>>0</td>
+    </tr>
+    <tr>
+        <td>fontSIze</td><td>50</td><td>>0</td>
+    </tr>
+    <tr>
+        <td>fontColor</td><td>#000000</td><td>#000----#fff之间，三位数或六位数</td>
+    </tr>
+    <tr>
+        <td>textTransform</td><td>-30</td><td>>-180---180之间</td>
+    </tr>
+    <tr>
+        <td>opacity</td><td>0.15</td><td>>0---1之间</td>
+    </tr>
+</table>
+<h5>应用1：</h5>
+<div>使用div标签，name属性值添加合同基本信息中的对应字段，添加target-type="waterMark"。</div>
+<h5>应用2：</h5>
+<div>正确设置水印组件提供的五个属性top、fontSize、fontColor、textTransform、opacity，改变水印显示样式。</div>
+<h5>应用3：</h5>
+<div>设置水印组件提供的五个属性top、fontSize、fontColor、textTransform、opacity，输入值有误的情况下，对应的属性采用默认值。</div>
+<br>
+<br>
+
+<!-- <button onclick="printData()">打印数据</button> -->
+</body>
+<script src="../vendor/jquery.min.js"></script>
+<script src="../vendor/jquery.form.js"></script>
+<script src="../vendor/imgUpload.js"></script>
+<script src="../vendor/singleUpload.js"></script>
+<script src="../vendor/addUpload.js"></script>
+<script src="../vendor/multipleUpload.js"></script>
+<script src="../vendor/jSignature.js"></script>
+<script src="../js/agreedData.js"></script>
+<script src="../js/class.js"></script>
+<script src="../js/sigrc.js"></script>
+<!-- <script src="../js/data.js"></script> -->
+<script src="../js/contractMethod.js"></script>
+<script>
+    var data = {
+        waterMarkContent: '湘潭出租合同模板水印测试',//水印测试内容
+        isWaterMark:true
+    }
+   data.btnCtrl = '03';
+    contractInit(data);
+</script>
+
+</html>

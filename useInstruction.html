@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>组件应用实例</title>
+</head>
+
+<body>
+    <ul>
+        <li><a href="./demo/basicInput.html">基础输入框</a></li>
+        <li><a href="./demo/basicText.html">基础文本组件</a></li>
+        <li><a href="./demo/dateInput.html">日期组件</a></li>
+        <li><a href="./demo/moneyInput.html">金额组件</a></li>
+        <li><a href="./demo/wordbreakInput.html">可换行输入框</a></li>
+        <li><a href="./demo/hlscsRadio.html">单选</a></li>
+        <li><a href="./demo/specialReadOnlyRadio.html">特殊只读单选</a></li>
+        <li><a href="./demo/hlscsChk.html">复选</a></li>
+        <li><a href="./demo/hlscsTable.html">表格</a></li>
+        <li><a href="./demo/singleImgUploader.html">单图片上传</a></li>
+        <li><a href="./demo/addImgUploader.html">单图片上传自增</a></li>
+        <li><a href="./demo/multipleImgUploader.html">多图片上传</a></li>
+        <li><a href="./demo/signature.html">签名</a></li>
+        <li><a href="./demo/waterMark.html">水印</a></li>
+    </ul>
+    <iframe src="./demo/basicInput.html"></iframe>
+</body>
+<style>
+    ul {
+        width: 150px;
+        float: left;
+    }
+    ul li{
+        line-height: 34px;
+    }
+    iframe {
+        width: calc(100% - 200px);
+        height: calc(100vh - 30px);
+        border: 1px solid #999;
+    }
+</style>
+<script>
+    var aArr = document.querySelectorAll('a');
+    console.log(aArr, aArr.length);
+    // aArr[aArr.length - 1].onclick = function () {
+    //     console.log(this, this.href);
+    //     return false;
+    // }
+    // aArr.addEventListener('click', function () {
+    //     console.log(this);
+    //     return false;
+    // })
+    window.onload = function () {
+        var body = document.querySelectorAll('body')[0];
+        body.onclick = function (ev) {
+            var ev = ev || window.event;
+            var target = ev.target || ev.srcElement;
+            if (target.nodeName.toLowerCase() == 'a') {
+                console.log(target, target.href);
+                document.querySelectorAll('iframe')[0].src = target.href;
+                return false;
+            }
+        }
+    }
+</script>
+
+</html>
